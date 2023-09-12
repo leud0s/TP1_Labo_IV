@@ -1,0 +1,41 @@
+body{
+    background-color: #1b1d21;
+}
+.title{
+    text-align: center;
+    padding: 50px;
+    color: #1b1d21;
+}
+mat-form-field{
+    width: 90%;
+    padding: 20px 0px;
+}
+.container-left{
+    width: 60%;
+    height: 100%;
+    justify-content: center;
+    background-color: #1b1d21;
+    text-align: center;
+}
+.container-right{
+    position: absolute;
+    right: 0;
+    top: 0;
+    background-color: #6c5dd3;
+    width: 40%;
+    display: inline-block;
+    text-align: center;
+    height: 100%;
+}
+button{
+    width: 90%;
+    padding-bottom: 10px;
+}
+.container-register{
+    padding-top: 10px;
+    width: 100%;
+    display: inline;
+}
+.link{
+    color: #fff;
+}

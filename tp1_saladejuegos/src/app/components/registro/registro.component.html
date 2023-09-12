@@ -1,0 +1,22 @@
+<div class="container-left">
+</div>
+  <div class="container-right">
+    <h2 class="title">Registrate</h2>
+    <mat-form-field>
+      <mat-label>Ingresa tu email</mat-label>
+      <input matInput  [formControl]="email" required>
+      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+    </mat-form-field>
+    <mat-form-field>
+        <mat-label>Ingresa tu contraseña</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
+      </mat-form-field>
+      <button mat-raised-button color="accent">Registrarse</button>
+      <div class="container-register">
+          <p>Tienes cuenta? <a mat-button class="link" (click)="getLogin()">Ingresa</a></p>
+      </div>
+  </div>
