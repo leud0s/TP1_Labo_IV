@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "laboivtp1": {
+      "hosting": {
+        "tp1_saladejuegos": [
+          "laboivtp1"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "laboivtp1"
+  }
+}

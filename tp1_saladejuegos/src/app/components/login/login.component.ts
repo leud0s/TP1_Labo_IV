@@ -1,6 +1,9 @@
 import { Component } from '@angular/core';
-import { FormControl, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from 'src/app/models/user.model';
+import { UtilsService } from 'src/app/services/auth.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +12,46 @@ import { Router } from '@angular/router';
 })
 export class LoginComponent {
   hide = true;
-  email = new FormControl('', [Validators.required, Validators.email]);
-  password = new FormControl('', [Validators.required]);
-  constructor(public router: Router){}
+  form = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    password: new FormControl('',[Validators.required]),
+  })
+  constructor(public router: Router,
+    private firebaseSvc: FirebaseService,
+    private utilsSvc: UtilsService,
+    ){}
 
 
   getErrorMessage() {
-    if (this.email.hasError('required')) {
+    if (this.form.controls.email.hasError('required')) {
       return 'Campo requerido';
     }
-    if (this.password.hasError('required')) {
+    if (this.form.controls.password.hasError('required')) {
       return 'Campo requerido';
     }
-    return this.email.hasError('email') ? 'Email no valido' : '';
+    return this.form.controls.email.hasError('email') ? 'Email no valido' : '';
+  }
+  submit() {
+    if (this.form.valid) {
+      //console.log(this.form.value);
+  
+      this.firebaseSvc.login(this.form.value as User).then(async res =>{
+        let user: User={
+          uid: res.user.uid,
+          name: res.user.displayName,
+          email: res.user.email,
+        }
+        this.utilsSvc.setElementInLocalstorage('user',user)
+        this.utilsSvc.routerLink('home'),
+        this.router.navigate(['home'], { queryParams: user });
+        
+        })
+
+        this.form.reset();
+      }error =>{
+        console.log(error.message);
+        this.utilsSvc.routerLink('registro');
+    }
   }
   getRegistrar(){
     this.router.navigate(['registro']);

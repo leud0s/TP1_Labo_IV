@@ -2,18 +2,18 @@
 <div class="container-form">
   <img class="icon" src="../../../assets/consola.png" alt="" />
   <h1 class="title">Bienvenido a la sala de juegos</h1>
-  <div class="form">
+  <form (keyup.enter)="submit()"  class="form">
     <mat-form-field appearance="outline">
       <mat-label class="label">Ingresa tu nombre</mat-label>
-      <input class="input" matInput [formControl]="email" required />
+      <input class="input" matInput autocomplete="name" [formControl]="form.controls.name" required />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-error *ngIf="form.controls.name.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label class="label">Ingresa tu email</mat-label>
-      <input class="input" matInput [formControl]="email" required />
+      <input class="input" matInput [formControl]="form.controls.email" required />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-error *ngIf="form.controls.email">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label class="label">Ingresa tu contraseña</mat-label>
@@ -21,7 +21,7 @@
         class="input"
         matInput
         [type]="hide ? 'password' : 'text'"
-        [formControl]="password"
+        [formControl]="form.controls.password"
         required
       />
       <button
@@ -33,10 +33,10 @@
       >
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
-      <mat-error *ngIf="password.invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-error *ngIf="form.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
-  </div>
-  <a class="my-button" mat-raised-button color="accent">Registrarse</a>
+  </form>
+  <a class="my-button" mat-raised-button (click)="submit()">Registrarse</a>
   <p class="text">
     Tenes cuenta? <a (click)="getLogin()" class="link">Entrar</a>
   </p>
