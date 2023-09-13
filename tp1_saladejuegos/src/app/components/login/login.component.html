@@ -1,25 +1,38 @@
-<div class="container-left">
-    <h2 class="title">Iniciar Sesión</h2>
-    <mat-form-field>
-      <mat-label>Ingresa tu email</mat-label>
-      <input matInput  [formControl]="email" required>
-      <mat-error *ngIf="email.invalid">{{getErrorMessage()}}</mat-error>
+<img class="background" src="../../../assets/signin_balls.png" alt="" />
+<div class="container-form">
+  <img class="icon" src="../../../assets/consola.png" alt="" />
+  <h1 class="title">Bienvenido a la sala de juegos</h1>
+  <div class="form">
+    <mat-form-field appearance="outline" class="focused">
+      <mat-label class="label">Ingresa tu email</mat-label>
+      <input class="input" matInput [formControl]="email" required />
+      <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+      <mat-error *ngIf="email.invalid">{{ getErrorMessage() }}</mat-error>
     </mat-form-field>
-    <mat-form-field>
-        <mat-label>Ingresa tu contraseña</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" required>
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-        <mat-error *ngIf="password.invalid">{{getErrorMessage()}}</mat-error>
-      </mat-form-field>
-      <button mat-raised-button color="accent">Login</button>
-      <div class="container-register">
-          <p>No tienes cuenta? <a mat-button class="link" (click)="getRegistrar()">Registrate</a></p>
-      </div>
+    <mat-form-field appearance="outline">
+      <mat-label class="label">Ingresa tu contraseña</mat-label>
+      <input
+        class="input"
+        matInput
+        [type]="hide ? 'password' : 'text'"
+        [formControl]="password"
+        required
+      />
+      <button
+        mat-icon-button
+        matSuffix
+        (click)="hide = !hide"
+        [attr.aria-label]="'Hide password'"
+        [attr.aria-pressed]="hide"
+      >
+        <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+      </button>
+      <mat-error *ngIf="password.invalid">{{ getErrorMessage() }}</mat-error>
+    </mat-form-field>
   </div>
-  <div class="container-right">
-    <h2>Bienvenido a la sala de de juego</h2>
-    <img class="icon" src="../../../assets/heart.png" alt="">
-    <a (click)="getQuienSoy()">Quien soy?</a>
-  </div>
+  <a class="my-button" mat-raised-button color="accent">Login</a>
+  <p class="text">
+    No tenes cuenta? <a (click)="getRegistrar()" class="link">Registrate</a>
+  </p>
+  <a (click)="getQuienSoy()" class="link">Quien soy?</a>
+</div>

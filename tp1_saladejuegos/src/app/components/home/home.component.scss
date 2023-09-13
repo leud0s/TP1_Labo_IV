@@ -1,0 +1,15 @@
+.image-icon{
+    height: 50px;
+    padding-right: 10px;
+}
+.container-games {
+    display: grid;
+grid-template-columns: repeat(5, 1fr);
+grid-template-rows: repeat(2, 1fr);
+grid-column-gap: 0px;
+grid-row-gap: 25px; 
+}
+.div1 { grid-area: 1 / 1 / 2 / 4; }
+.div2 { grid-area: 1 / 3 / 2 / 6; }
+.div3 { grid-area: 2 / 1 / 4 / 4; }
+.div4 { grid-area: 2 / 3 / 4 / 6; } 

@@ -25,4 +25,7 @@ export class RegistroComponent {
   getLogin(){
     this.router.navigate(['login']);
   }
+  getQuienSoy(){
+    this.router.navigate(['quiensoy']);
+  }
 }

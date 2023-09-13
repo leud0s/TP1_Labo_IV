@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quien-soy',
@@ -6,5 +7,12 @@ import { Component } from '@angular/core';
   styleUrls: ['./quien-soy.component.scss']
 })
 export class QuienSoyComponent {
+  constructor(public router: Router){}
 
+  getRegistrar(){
+    this.router.navigate(['registro']);
+  }
+  getLogin(){
+    this.router.navigate(['login']);
+  }
 }
