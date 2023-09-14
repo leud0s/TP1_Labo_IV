@@ -7,7 +7,7 @@
       <mat-label class="label">Ingresa tu email</mat-label>
       <input class="input" matInput [formControl]="form.controls.email" required />
       <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
-      <mat-error *ngIf="form.controls.email">{{ getErrorMessage() }}</mat-error>
+      <mat-error *ngIf="form.controls.email">{{ getErrorMessageEmail() }}</mat-error>
     </mat-form-field>
     <mat-form-field appearance="outline">
       <mat-label class="label">Ingresa tu contraseña</mat-label>
@@ -27,12 +27,14 @@
       >
         <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
       </button>
-      <mat-error *ngIf="form.controls.password.invalid">{{ getErrorMessage() }}</mat-error>
+      <mat-error *ngIf="form.controls.password.invalid">{{ getErrorMessagePassword() }}</mat-error>
     </mat-form-field>
   </div>
   <a class="my-button" mat-raised-button (click)="submit()">Entrar</a>
-  <p class="text">
-    No tenes cuenta? <a (click)="getRegistrar()" class="link">Registrate</a>
-  </p>
-  <a (click)="getQuienSoy()" class="link">Quien soy?</a>
+  <div class="container-links">
+    <p class="text">
+      No tenes cuenta? <a (click)="getRegistrar()" class="link">Registrate</a>
+    </p>
+    <a (click)="getQuienSoy()" class="link">Quien soy?</a>
+  </div>
 </div>

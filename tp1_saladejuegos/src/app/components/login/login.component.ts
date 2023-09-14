@@ -22,15 +22,27 @@ export class LoginComponent {
     ){}
 
 
-  getErrorMessage() {
-    if (this.form.controls.email.hasError('required')) {
-      return 'Campo requerido';
+    getErrorMessageEmail(){
+      let message = "";
+      if (this.form.controls.email.hasError('required')) {
+        message = 'Campo requerido';
+      }
+      if(this.form.controls.email.hasError('email')){
+        message='Email no valido';
+      }
+    
     }
-    if (this.form.controls.password.hasError('required')) {
-      return 'Campo requerido';
+    getErrorMessagePassword(){
+      let message = "";
+      if (this.form.controls.password.hasError('required')) {
+        message = 'Campo requerido';
+      }
+      if(this.form.controls.password.hasError('minLength')){
+        message='Debe tener al menos 6 caracteres';
+      }
+      return message;
+  
     }
-    return this.form.controls.email.hasError('email') ? 'Email no valido' : '';
-  }
   submit() {
     if (this.form.valid) {
       //console.log(this.form.value);

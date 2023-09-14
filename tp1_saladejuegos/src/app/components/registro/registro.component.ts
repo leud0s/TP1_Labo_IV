@@ -22,18 +22,38 @@ export class RegistroComponent {
       password: new FormControl('', [Validators.required, Validators.minLength(6)]),
     });
 
-  getErrorMessage() {
-    if (this.form.controls.email.hasError('required')) {
-      return 'Campo requerido';
-    }
-    if (this.form.controls.password.hasError('required')) {
-      return 'Campo requerido';
-    }
+  getErrorMessageName() {
+    let message = "";
     if (this.form.controls.name.hasError('required')) {
-      return 'Campo requerido';
+      message = 'Campo requerido';
     }
-    
-    return this.form.controls.email.hasError('email') ? 'Email no valido' : '';
+    if(this.form.controls.name.hasError('name')){
+      message='Debe tener al menos 3 caracteres';
+    }
+    console.log(this.form.controls.name.hasError);
+    return message;
+  }
+  getErrorMessageEmail(){
+    let message = "";
+    if (this.form.controls.email.hasError('required')) {
+      message = 'Campo requerido';
+    }
+    if(this.form.controls.email.hasError('email')){
+      message='Email no valido';
+    }
+    console.log(this.form.controls.name.hasError);
+    return message;
+  }
+  getErrorMessagePassword(){
+    let message = "";
+    if (this.form.controls.password.hasError('required')) {
+      message = 'Campo requerido';
+    }
+    if(this.form.controls.password.hasError('minLength')){
+      message='Debe tener al menos 6 caracteres';
+    }
+    return message;
+
   }
   
   submit() {
