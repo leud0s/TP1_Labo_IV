@@ -14,7 +14,7 @@ export class LoginComponent {
   hide = true;
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
-    password: new FormControl('',[Validators.required]),
+    password: new FormControl('',[Validators.required,Validators.minLength(6)]),
   })
   constructor(public router: Router,
     private firebaseSvc: FirebaseService,
@@ -30,18 +30,14 @@ export class LoginComponent {
       if(this.form.controls.email.hasError('email')){
         message='Email no valido';
       }
-    
+    return message;
     }
     getErrorMessagePassword(){
-      let message = "";
+      let message = "Debe tener al menos 6 caracteres";
       if (this.form.controls.password.hasError('required')) {
         message = 'Campo requerido';
       }
-      if(this.form.controls.password.hasError('minLength')){
-        message='Debe tener al menos 6 caracteres';
-      }
       return message;
-  
     }
   submit() {
     if (this.form.valid) {

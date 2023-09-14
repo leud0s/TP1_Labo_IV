@@ -23,14 +23,10 @@ export class RegistroComponent {
     });
 
   getErrorMessageName() {
-    let message = "";
+    let message = "Debe tener al menos 3 caracteres";
     if (this.form.controls.name.hasError('required')) {
       message = 'Campo requerido';
     }
-    if(this.form.controls.name.hasError('name')){
-      message='Debe tener al menos 3 caracteres';
-    }
-    console.log(this.form.controls.name.hasError);
     return message;
   }
   getErrorMessageEmail(){
@@ -45,15 +41,11 @@ export class RegistroComponent {
     return message;
   }
   getErrorMessagePassword(){
-    let message = "";
+    let message = "Debe tener al menos 6 caracteres";
     if (this.form.controls.password.hasError('required')) {
       message = 'Campo requerido';
     }
-    if(this.form.controls.password.hasError('minLength')){
-      message='Debe tener al menos 6 caracteres';
-    }
     return message;
-
   }
   
   submit() {
