@@ -2,16 +2,40 @@
 <div class="container-form">
     <h1 class="title">Hello there!</h1>
     <div class="form">
-        <h2 class="name">Mi nombre es <span>Juan Sueldo</span></h2>
+        <h2 class="name">Mi nombre es <span>Juan Sueldo </span>4B</h2>
         <div class="container-img">
           <img class="photo" src="../../../assets/perfil.png" alt="">
         </div>
-        
+        <h3 class="game">Juego Extra Reglas:</h3>
+        <div class="card">
+          <ul>
+            <li>
+              <p>Cada jugador contara con 5 cartas elegidas de manera aleatoria</p>
+            </li>
+            <li>
+              <p>
+                Cada jugador cuenta con una barra de vida,
+                El jugador que logre debilitar primero al oponente ganara la partida
+              </p>
+            </li>
+            <li>
+              <p>El objetivo de debilitar al contricante mediante de utilizacion de las cartas que tiene en su poder</p>
+            </li>
+            <li>
+              <p>El jugador que logre debilitar primero al oponente ganara la partida</p>
+            </li>
+            <li>
+              <p>Si ambos jugadores se quedan sin cartas ganara el jugador que tenga mayor puntos de vida</p>
+            </li>
+          </ul>
+        </div>
     </div>
-    <p class="text">
-        Tenes cuenta? <a (click)="getLogin()" class="link">Entrar</a>
-      </p>
-      <p class="text">
-        No tenes cuenta? <a (click)="getRegistrar()" class="link">Registrate</a>
-      </p>
+    <div class="container-buttons">
+      <div class="div1">
+        <a class="my-button" mat-raised-button (click)="getLogin()">Entrar</a>
+      </div>
+    <div class="div2">
+      <a class="my-button" mat-raised-button (click)="getRegistrar()">Registrate</a>
+    </div>
+    </div>
 </div>

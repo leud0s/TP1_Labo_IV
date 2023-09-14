@@ -20,7 +20,7 @@ export class HomeComponent {
     this.router.queryParams.subscribe(params => {
       const email = params['email'];
       const name = params['name'];
-      this.nameTitle = email;
+      this.nameTitle = name;
       console.log(params);
     });
   }
