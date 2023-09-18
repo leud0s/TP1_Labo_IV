@@ -20,36 +20,39 @@ import { environment } from '../environments/environment';
 import { provideAuth,getAuth } from '@angular/fire/auth';
 import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
+import { SpinnerComponent } from './components/spinner/spinner.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    LoginComponent,
-    RegistroComponent,
-    HomeComponent,
-    NotFoundComponent,
-    QuienSoyComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule,
-    BrowserAnimationsModule,
-    MatFormFieldModule,
-    MatInputModule, 
-    MatButtonModule,
-    MatIconModule,
-    ReactiveFormsModule,
-    NgIf,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideFirestore(() => getFirestore())
-
-  ],
-  providers: [
-
-    { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
-  ],
-  bootstrap: [AppComponent]
+    declarations: [
+        AppComponent,
+        LoginComponent,
+        RegistroComponent,
+        HomeComponent,
+        NotFoundComponent,
+        QuienSoyComponent,
+        SpinnerComponent,
+        SnackBarComponent
+    ],
+    providers: [
+        { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
+    ],
+    bootstrap: [AppComponent],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        FormsModule,
+        BrowserAnimationsModule,
+        MatFormFieldModule,
+        MatInputModule,
+        MatButtonModule,
+        MatIconModule,
+        ReactiveFormsModule,
+        NgIf,
+        provideFirebaseApp(() => initializeApp(environment.firebase)),
+        provideAuth(() => getAuth()),
+        provideFirestore(() => getFirestore()),
+        
+    ]
 })
 export class AppModule { }

@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
   selector: 'app-quien-soy',
   templateUrl: './quien-soy.component.html',
   styleUrls: ['./quien-soy.component.scss'],
+  standalone: true
 })
 export class QuienSoyComponent {
   constructor(public router: Router){}

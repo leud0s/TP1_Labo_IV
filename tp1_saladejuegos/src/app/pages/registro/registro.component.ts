@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UtilsService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { SpinnerComponent } from '../spinner/spinner.component';
 
 @Component({
   selector: 'app-registro',
@@ -14,7 +13,7 @@ import { SpinnerComponent } from '../spinner/spinner.component';
 export class RegistroComponent {
   hide = true;
   public nombre = "";
-  loading = false;
+  
   constructor(public router: Router, private firebaseSvc: FirebaseService,
     private utilsSvc: UtilsService, private formBuilder: FormBuilder){}
     form = new FormGroup({
@@ -51,7 +50,6 @@ export class RegistroComponent {
   
   submit() {
     if (this.form.valid) {
-      this.loading = true;
       const aux = this.nombre;
       this.firebaseSvc.signinUp(this.form.value as User).then(async res =>{
 

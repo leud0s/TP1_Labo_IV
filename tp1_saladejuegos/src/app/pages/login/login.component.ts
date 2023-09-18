@@ -4,16 +4,16 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UtilsService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { SpinnerComponent } from '../spinner/spinner.component';
-import { SnackBarComponent } from '../snack-bar/snack-bar.component';
+import { SpinnerComponent } from 'src/app/components/spinner/spinner.component';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
+  standalone: true
 })
 export class LoginComponent {
   hide = true;
-  loading = false;
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('',[Validators.required,Validators.minLength(6)]),
@@ -44,7 +44,7 @@ export class LoginComponent {
   submit() {
     if (this.form.valid) {
       //console.log(this.form.value);
-      this.loading = true;
+  
       this.firebaseSvc.login(this.form.value as User).then(async res =>{
         let user: User={
           uid: res.user.uid,
@@ -52,7 +52,6 @@ export class LoginComponent {
           email: res.user.email,
         }
         this.utilsSvc.setElementInLocalstorage('user',user)
-        this.loading = true;
         this.utilsSvc.routerLink('home'),
         this.router.navigate(['home'], { queryParams: user });
         
@@ -60,7 +59,6 @@ export class LoginComponent {
 
         this.form.reset();
       }error =>{
-
         console.log(error.message);
         this.utilsSvc.routerLink('registro');
     }
