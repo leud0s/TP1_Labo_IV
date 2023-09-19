@@ -90,4 +90,10 @@ export class LoginComponent {
   getQuienSoy(){
     this.router.navigate(['quiensoy']);
   }
+  autoComplete(){
+    this.form.setValue({
+      email: 'test@mail.com',
+      password: '123456'
+    });;
+  }
 }
