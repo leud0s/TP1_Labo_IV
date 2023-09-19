@@ -3,19 +3,15 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {AngularFirestore} from '@angular/fire/compat/firestore';
 import { User } from '../models/user.model';
 import {getAuth, updateProfile} from "firebase/auth"; 
-import { collection, Firestore, addDoc } from 'firebase/firestore';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  usersRef = collection(this.firestore,'users');
-  logsRef = collection(this.firestore,'logs');
   constructor(
     private auth: AngularFireAuth,
-    private db: AngularFirestore,
-    private firestore: Firestore
+    private db: AngularFirestore
   ) { }
 
   login(user: User){
@@ -33,10 +29,13 @@ export class FirebaseService {
   logout(){
     return this.auth.signOut();
   }
-  addUserAuto(user: User){
-    return addDoc(this.usersRef, user);
-  }
-  addLogAuto(log: any){
-    return addDoc(this.usersRef, log);
+ saveLog(email : string){
+    let date = new Date();
+    const fullDate = date.toLocaleDateString() + '-' + date.toLocaleTimeString();
+    let arrayLog = {
+      email: email,
+      fecha_ingreso: fullDate
+    }
+    this.db.collection('log').add(arrayLog);
   }
 }
