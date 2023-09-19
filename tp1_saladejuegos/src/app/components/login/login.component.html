@@ -19,9 +19,11 @@
       <mat-error *ngIf="form.controls.password.invalid">{{ getErrorMessagePassword() }}</mat-error>
     </mat-form-field>
   </div>
-  <a class="my-button" mat-raised-button (click)="submit()">Entrar</a>
-  <div class="container-links">
+  <div class="container-buttons">
+    <a class="my-button" mat-raised-button (click)="submit()">Entrar</a>
     <a class="my-button" mat-raised-button (click)="autoComplete()">Auto Completar</a>
+  </div>
+  <div class="container-links">
     <p class="text">
       No tenes cuenta? <a (click)="getRegistrar()" class="link">Registrate</a>
     </p>

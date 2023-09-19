@@ -6,7 +6,7 @@
         <div id="player" class="container-player">
             <h2 class="player-name">Jugador</h2>
             <div class="progress">
-                <div class="progress-bar" id="hp-bar" style="width:'[{{hpBarPlayer}}]%';">
+                <div class="progress-bar" id="hp-bar" [ngStyle]="{'width.%': playerHP}">
                     <span class="progress-bar-text" id="hp-number">{{playerHP}}HP</span>
                 </div>
             </div>
@@ -15,9 +15,9 @@
             </div>
         </div>
         <div id="computer" class="container-cpu">
-            <h2 class="cpu-name">Máquina</h2>
+            <h2 class="cpu-name">CPU</h2>
             <div class="progress">
-                <div class="progress-bar cpu-bar" id="hp-bar-cpu" style="width:'{{hpBarCpu}}%';">
+                <div class="progress-bar cpu-bar" id="hp-bar-cpu" [ngStyle]="{'width.%': cpuHP}">
                     <span class="progress-bar-text" id="hp-number-cpu">{{cpuHP}}HP</span>
                 </div>
             </div>
