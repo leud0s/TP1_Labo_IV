@@ -1,4 +1,5 @@
-<mat-form-field>
-    <mat-label>Snack bar duration (seconds)</mat-label>
-    <input type="number" [(ngModel)]="durationInSeconds" [value]="message" matInput>
-  </mat-form-field>
+<div class="container-alert">
+  <div class="alert alert-danger {{hidden ? 'hidden' : ''}}" role="alert"><i class="fa-solid fa-triangle-exclamation"></i>
+      {{data}}
+  </div>
+</div>

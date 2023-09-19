@@ -1,0 +1,33 @@
+<div class="container-game">
+    <div class="container-title">
+        <p class="retult-text" id="result-text">{{result}}</p>
+    </div>
+    <div class="container-players">
+        <div id="player" class="container-player">
+            <h2 class="player-name">Jugador</h2>
+            <div class="progress">
+                <div class="progress-bar" id="hp-bar" style="width:'[{{hpBarPlayer}}]%';">
+                    <span class="progress-bar-text" id="hp-number">{{playerHP}}HP</span>
+                </div>
+            </div>
+            <div id="player-cards" class="card-container">
+                <app-card *ngFor="let item of list" >
+                    [type]="this.list.name"
+                    [img]="item.img"
+                    [name]="item.name"
+                    [detail]="item.detail"
+                    [damage]="item.damage"
+                </app-card>
+            </div>
+            </div>
+        </div>
+        <div id="computer" class="container-cpu">
+            <h2 class="cpu-name">Máquina</h2>
+            <div class="progress">
+                <div class="progress-bar cpu-bar" id="hp-bar-cpu" style="width:'{{hpBarCpu}}%';">
+                    <span class="progress-bar-text" id="hp-number-cpu">{{cpuHP}}HP</span>
+                </div>
+            </div>
+            <div id="computer-cards" class="card-container"></div>
+        </div>
+    </div>

@@ -22,6 +22,9 @@ import { provideFirestore,getFirestore } from '@angular/fire/firestore';
 import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { CardComponent } from './components/card/card.component';
+import { GameCardsComponent } from './components/game-cards/game-cards.component';
 
 @NgModule({
     declarations: [
@@ -32,7 +35,9 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         NotFoundComponent,
         QuienSoyComponent,
         SpinnerComponent,
-        SnackBarComponent
+        SnackBarComponent,
+        CardComponent,
+        GameCardsComponent,
     ],
     providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase }
@@ -49,10 +54,15 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
         MatIconModule,
         ReactiveFormsModule,
         NgIf,
+        MatSnackBarModule,
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
         
+    ],
+    exports:[
+        SnackBarComponent,
     ]
+
 })
 export class AppModule { }

@@ -9,7 +9,6 @@ export class SpinnerComponent implements OnInit  {
   @Input() showSpinner!: boolean;
   @Input() class !: string;
   constructor() {}
-  ngOnInit(): void {
-    throw new Error('Method not implemented.');
+  ngOnInit(){
   }
 }

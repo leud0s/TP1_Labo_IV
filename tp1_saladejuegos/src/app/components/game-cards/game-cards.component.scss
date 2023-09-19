@@ -1,0 +1,70 @@
+.container-title{
+    background: rgba(255, 255, 255, 0.656);
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(3.5px);
+    -webkit-backdrop-filter: blur(3.5px);
+    border: 1px solid rgba(0, 0, 0, 0.01);
+}
+
+.title-game {
+    color: #7c1ca4;
+    text-shadow: 4px 0px 4px rgba(185, 168, 168, 0.733);
+}
+
+.card-container {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+    position: relative;
+}
+
+.player-name{
+    color: #428bca;
+}
+.cpu-name{
+    color: #42ca59;
+}
+#result-text {
+    font-size: 18px;
+    margin: 10px;
+    color: #36081f;
+    font-weight: 700;
+    text-shadow: 4px 0px 4px rgba(0, 0, 0, 0.849);
+}
+
+#play-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: po
+    inter;
+}
+.progress {
+    height: 35px;
+    border: 1px solid #428bca;
+    border-radius: 5px;
+    background-color: #e6f3fa;
+    margin-bottom: 15px;
+    text-align: center; /* Centra el contenido horizontalmente */
+    margin: 20px auto; /* Centra el elemento en el centro del contenedor */
+    width: 50%; /* Ajusta el ancho según tus necesidades */
+    box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
+}
+ 
+.progress-bar {
+    height: 100%;
+    background: #42ca59;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    transition: width 1.5s ease-in-out;
+}
+.cpu-bar{
+    background-color: #b32b30;
+}
+.progress-bar-text {
+    margin-left: 10px;
+    font-weight: bold;
+    color: #cce7f5;
+}
