@@ -56,7 +56,7 @@ export class LoginComponent {
           name: res.user.displayName,
           email: res.user.email
         }
-        this.firebaseSvc.addLogAuto({date: fullDate,user: res.user.email});
+        this.firebaseSvc.saveLog(res.user.email);
         
         this.utilsSvc.setElementInLocalstorage('user',user)
         this.utilsSvc.routerLink('home'),
