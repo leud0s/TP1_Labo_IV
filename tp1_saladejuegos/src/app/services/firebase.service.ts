@@ -9,6 +9,7 @@ import {getAuth, updateProfile} from "firebase/auth";
   providedIn: 'root'
 })
 export class FirebaseService {
+  
   constructor(
     private auth: AngularFireAuth,
     private db: AngularFirestore
@@ -32,10 +33,12 @@ export class FirebaseService {
  saveLog(email : string){
     let date = new Date();
     const fullDate = date.toLocaleDateString() + '-' + date.toLocaleTimeString();
-    let arrayLog = {
+   
+    let logs = this.db.collection('users');
+    logs.doc().set({
       email: email,
       fecha_ingreso: fullDate
-    }
-    this.db.collection('log').add(arrayLog);
+    })
+
   }
 }

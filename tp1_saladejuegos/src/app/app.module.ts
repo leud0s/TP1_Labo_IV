@@ -26,6 +26,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { CardComponent } from './components/card/card.component';
 import { GameCardsComponent } from './components/game-cards/game-cards.component';
 
+
 @NgModule({
     declarations: [
         AppComponent,
