@@ -48,13 +48,15 @@ export class LoginComponent {
   submit() {
     if (this.form.valid) {
       this.loading = true;
-      
+      const date = new Date();
+      const fullDate = date.toLocaleDateString() + '-' + date.toLocaleTimeString();
       this.firebaseSvc.login(this.form.value as User).then(async res =>{
         let user: User={
           uid: res.user.uid,
           name: res.user.displayName,
           email: res.user.email
         }
+        this.firebaseSvc.addLogAuto({date: fullDate,user: res.user.email});
         
         this.utilsSvc.setElementInLocalstorage('user',user)
         this.utilsSvc.routerLink('home'),
