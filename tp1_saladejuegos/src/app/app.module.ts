@@ -23,8 +23,6 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-import { CardComponent } from './components/card/card.component';
-import { GameCardsComponent } from './components/game-cards/game-cards.component';
 
 
 @NgModule({
@@ -32,13 +30,10 @@ import { GameCardsComponent } from './components/game-cards/game-cards.component
         AppComponent,
         LoginComponent,
         RegistroComponent,
-        HomeComponent,
         NotFoundComponent,
         QuienSoyComponent,
         SpinnerComponent,
         SnackBarComponent,
-        CardComponent,
-        GameCardsComponent,
     ],
     providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase }

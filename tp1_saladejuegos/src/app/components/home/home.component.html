@@ -1,4 +1,4 @@
-<img src="../../../assets/signin_balls.png" alt="">
+
 <div class="container-form">
     <img class="icon" src="../../../assets/consola.png" alt="">
     <h1 class="title">Bienvenido</h1>
@@ -19,9 +19,10 @@
 
     </div>
     <div class="div4">
-        <a class="my-button" > <img class="image-icon"
+        <a class="my-button" routerLink="game"> <img class="image-icon"
                 src="../../../assets/Buttons/carta-de-tarot.png" alt="">Extra game</a>
     </div>
 </div>
 <a class="my-button" (click)="logout()">Salir</a>
 </div>
+<router-outlet></router-outlet>
