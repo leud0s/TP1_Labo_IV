@@ -32,6 +32,7 @@ export class GameCardsComponent implements OnInit{
     return dealCards;
   }
   public onClick(playerCardIndex: number) {
+   
     const computerCardIndex = Math.floor(Math.random() * this.playerCpu.cards.length);
 
     const playerCard = this.playerOne.cards[playerCardIndex];
@@ -43,32 +44,29 @@ export class GameCardsComponent implements OnInit{
     this.playerCpu.hp -= playerCard.damage;
     this.playerOne.hp -= computerCard.damage;
 
-    this.selectedCardIndex = this.playerOne.cards[playerCardIndex].id;
-    console.log(this.selectedCardIndex);
+   
     if (playerDamage > computerDamage) {
-        this.result = "¡Has ganado la ronda!";
+      this.result = "¡Has ganado la ronda!";
     } else if (computerDamage > playerDamage) {
-        this.result = "La máquina ha ganado la ronda.";
+      this.result = "La máquina ha ganado la ronda.";
     } else {
-        this.result = "La ronda terminó en empate.";
+      this.result = "La ronda terminó en empate.";
     }
-
-    // Aplica la clase "move-center" para animar las cartas al centro
-   // playerCardContainer.querySelectorAll('.card')[playerCardIndex].classList.add("move-center","move-center-player");
-    //computerCardContainer.querySelectorAll('.card')[computerCardIndex].classList.add("move-center","move-center-cpu");
-
-    // Elimina las cartas jugadas después de la animación
-    //this.animation = "move-center move-center-player";
+    
+    
+    this.selectedCardIndex = playerCardIndex+1;
     setTimeout(() => {
-        this.playerOne.cards.splice(playerCardIndex, 1);
+      console.log(this.playerCpu.cards);
+      this.playerOne.cards.splice(playerCardIndex, 1);
         this.playerCpu.cards.splice(computerCardIndex, 1);
         this.updateCardIds();
-
+    }, 1700); // Espera 1 segundo para que termine la animación
+    
+        console.log(this.playerCpu.cards);
         // Comprueba el resultado final
         if (this.playerOne.cards.length === 0 || this.playerCpu.cards.length === 0 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
             this.endGame();
         }
-    }, 1500); // Espera 1 segundo para que termine la animación
 }
 private endGame() {
   if (this.playerOne.hp > this.playerCpu.hp) {

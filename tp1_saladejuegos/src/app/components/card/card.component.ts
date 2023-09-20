@@ -12,10 +12,10 @@ export class CardComponent {
   @Input () name: string;
   @Input () detail: string;
   @Input () damage: number;
-  @Input () animation: boolean;
+  isClicked = false;
 
   ngOnInit() {}
-  onClick(animation: boolean) {
-    animation = false;
+  onClick() {
+    this.isClicked = !this.isClicked;
   }
 }

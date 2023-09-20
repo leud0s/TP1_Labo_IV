@@ -1,4 +1,4 @@
-<div  class="card">
+<div  class="card" [ngClass]="{'move-center move-center-player': isClicked}" (click)="onClick()">
     <div class="ribbon"><span>{{type}}</span></div>
     <img src="{{img}}">
     <hr>
