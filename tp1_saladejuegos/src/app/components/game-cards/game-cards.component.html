@@ -1,6 +1,13 @@
 <div class="container-game">
     <div class="container-title">
-        <p class="retult-text" id="result-text">{{result}}</p>
+        <div>
+            <p>Puntos: {{ points }}</p>
+            <p>{{ result }}</p>
+            <button mat-fab color="accent" (click)="restartGame()" *ngIf="isGameOver">
+                <mat-icon></mat-icon>
+              </button>
+          </div>
+          
     </div>
     <div class="container-players">
         <div id="player" class="container-player">
@@ -18,9 +25,7 @@
                     [detail]="item.detail"
                     [damage]="item.damage"
                     (click)="onClick(i)"
-                    
                     >
-
                 </app-card>
             </div>
             </div>

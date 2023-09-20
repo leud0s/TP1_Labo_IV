@@ -11,16 +11,25 @@
     color: #7c1ca4;
     text-shadow: 4px 0px 4px rgba(185, 168, 168, 0.733);
 }
-
+.container-player{
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.container-cpu{
+    position: absolute;
+    bottom: 0;
+    right: 0;
+}
 .card-container {
     display: flex;
     justify-content: center;
     align-items: flex-end;
-    height: 200px;
+    height: 250px;
 }
 
 .card-container app-card {
-    margin-left: -10px;
+    margin-left: -30px;
     transition: margin-left 0.2s ease, transform 0.2s ease;
     transform-origin: bottom center;
     position: relative; /* Añade posición relativa */
@@ -59,16 +68,18 @@
     inter;
 }
 .progress {
+    position: relative;
     height: 35px;
     border: 1px solid #428bca;
     border-radius: 5px;
     background-color: #e6f3fa;
     margin-bottom: 15px;
-    text-align: center; /* Centra el contenido horizontalmente */
-    margin: 20px auto; /* Centra el elemento en el centro del contenedor */
-    width: 50%; /* Ajusta el ancho según tus necesidades */
+    text-align: center;
+    margin: 20px auto;
+    width: 30vw; 
     box-shadow: 10px 10px 5px 0px rgba(0,0,0,0.75);
 }
+
  
 .progress-bar {
     height: 100%;

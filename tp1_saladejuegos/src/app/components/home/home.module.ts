@@ -4,6 +4,8 @@ import { HomeComponent } from './home.component';
 import { HomeRoutingModule } from './home-routing.module'; // Importa el módulo de enrutamiento
 import { GameCardsComponent } from '../game-cards/game-cards.component';
 import { CardComponent } from '../card/card.component';
+import {MatButtonModule} from '@angular/material/button';
+import { MatIconModule } from '@angular/material/icon';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,10 @@ import { CardComponent } from '../card/card.component';
   ],
   imports: [
     CommonModule,
-    HomeRoutingModule,  // Agrega el módulo de enrutamiento a los imports
+    HomeRoutingModule,
+    MatButtonModule, 
+    MatIconModule
+      // Agrega el módulo de enrutamiento a los imports
   ]
 })
 export class HomeModule { }

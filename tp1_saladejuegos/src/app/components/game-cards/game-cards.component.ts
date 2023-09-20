@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { cards } from 'src/app/models/cards.model';
 import { Player } from 'src/app/models/player.model';
+
 @Component({
   selector: 'app-game-cards',
   templateUrl: './game-cards.component.html',
@@ -15,6 +16,8 @@ export class GameCardsComponent implements OnInit{
   cpuHP: number = 100;
   public playerOne = new Player(100, this.dealCards(5), "");
   public playerCpu = new Player(100, this.dealCards(5), "");
+  points: number = 0;  // Inicializar el contador de puntos
+  isGameOver: boolean = false;
   constructor(){
    
   }
@@ -72,12 +75,14 @@ export class GameCardsComponent implements OnInit{
         }
 }
 private endGame() {
+  this.isGameOver = true;
   if (this.playerOne.hp > this.playerCpu.hp) {
     this.result = "¡Has ganado el juego!";
-  }else if(this.playerOne.hp == this.playerCpu.hp) {
+    this.points += 5;
+  } else if (this.playerOne.hp == this.playerCpu.hp) {
     this.result = "La ronda terminó en empate.";
-  } 
-  else {
+    this.points += 3;
+  } else {
     this.result = "La máquina ha ganado el juego.";
   }
 }
@@ -90,6 +95,12 @@ private updateCardIds() {
     this.playerCpu.cards[i].id = i + 1;
   }
 }
+restartGame() {
+  // Reiniciar el juego
+  this.playerOne = new Player(100, this.dealCards(5), "");
+  this.playerCpu = new Player(100, this.dealCards(5), "");
+  this.result = "Esperando selección...";
+  this.isGameOver = false;
+}
 
-  
 }
