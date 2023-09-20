@@ -17,7 +17,7 @@ cpuHP = 100;
 playerOne = new Player(100, this.dealCards(5), "");
 playerCpu = new Player(100, this.dealCards(5), "");
 points = 0;
-isGameOver = false;
+isGameOver: boolean = false;
 isOnClickInProgress: boolean = false;
   constructor(){
    
@@ -88,8 +88,8 @@ isOnClickInProgress: boolean = false;
           playerDamage = 0;
         break;
     }
-    this.playerCpu.hp -= playerCard.damage;
-    this.playerOne.hp -= computerCard.damage;
+    this.playerCpu.hp -= playerDamage;
+    this.playerOne.hp -= computerDamage;
 
     this.playerOne.hp = this.playerOne.hp < 0 ? 0 : this.playerOne.hp;
     this.playerCpu.hp = this.playerCpu.hp < 0 ? 0 : this.playerCpu.hp;
@@ -113,25 +113,21 @@ isOnClickInProgress: boolean = false;
         // Comprueba el resultado final
         if (this.playerOne.cards.length === 0 || this.playerCpu.cards.length === 0 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
             this.endGame();
+            this.isGameOver = true;
         }
 }
 private endGame() {
-  
   if (this.playerOne.hp > this.playerCpu.hp) {
     this.result = "¡Has ganado el juego!";
     this.points += 5;
-    this.isGameOver = true;
   } else if (this.playerOne.hp === this.playerCpu.hp) {
     this.result = "La ronda terminó en empate.";
     this.points += 3;
-    this.isGameOver = true;
   } else {
     this.result = "La máquina ha ganado el juego.";
     this.points -= 2;
     if(this.points < 0) this.points = 0;
-    this.isGameOver = true;
   }
-  this.isGameOver = true;
 }
 private updateCardIds() {
   for (let i = 0; i < this.playerOne.cards.length; i++) {
