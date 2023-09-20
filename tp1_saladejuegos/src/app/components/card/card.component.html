@@ -1,8 +1,17 @@
 <div  class="card" [ngClass]="{'move-center move-center-player': isClicked}" (click)="onClick()">
-    <div class="ribbon"><span>{{type}}</span></div>
-    <img src="{{img}}">
-    <hr>
-    <p class="card-name">{{name}}</p>
-    <p class="detail">{{detail}}</p>
+    <div class="ribbon" 
+        [ngClass]="{'green': type === 'Ataque',
+        'blue': type === 'Cura',
+        'yellow': type === 'Defensa', 
+        'white': type === 'Devolución',
+        'red': type === 'Roba vida'}">
+        <span>{{type}}</span></div>
+    <div class="element">
+        <img src="{{img}}">
+    </div>
+    <div class="container-data">
+        <p class="card-name">{{name}}</p>
+        <p class="detail">{{detail}}</p>
+    </div>
     <span class="btn-circle"><p class="damage">{{damage}}</p></span>
 </div>

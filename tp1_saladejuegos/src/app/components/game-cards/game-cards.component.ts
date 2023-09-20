@@ -43,7 +43,12 @@ export class GameCardsComponent implements OnInit{
         
     this.playerCpu.hp -= playerCard.damage;
     this.playerOne.hp -= computerCard.damage;
-
+    if(this.playerOne.hp < 0){
+      this.playerOne.hp = 0;
+    }
+    if(this.playerCpu.hp < 0){
+      this.playerCpu.hp = 0;
+    }
    
     if (playerDamage > computerDamage) {
       this.result = "¡Has ganado la ronda!";
@@ -53,8 +58,6 @@ export class GameCardsComponent implements OnInit{
       this.result = "La ronda terminó en empate.";
     }
     
-    
-    this.selectedCardIndex = playerCardIndex+1;
     setTimeout(() => {
       console.log(this.playerCpu.cards);
       this.playerOne.cards.splice(playerCardIndex, 1);
@@ -78,7 +81,7 @@ private endGame() {
     this.result = "La máquina ha ganado el juego.";
   }
 }
-public updateCardIds() {
+private updateCardIds() {
   for (let i = 0; i < this.playerOne.cards.length; i++) {
     this.playerOne.cards[i].id = i + 1;
   }

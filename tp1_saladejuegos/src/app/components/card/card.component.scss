@@ -18,14 +18,18 @@
 }
 
 img{
-    height: 70px;
-    position: absolute;
-    top: 10px;
-    filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
+  height: 70px;
+  width: auto; /* Permite que el ancho se ajuste automáticamente según la altura */
+  max-width: 100%; /* Asegura que la imagen no supere el ancho del contenedor */
+  max-height: 100%; /* Asegura que la imagen no supere la altura del contenedor */
+  position: absolute;
+  top: 10px;
+  filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
 }
 .card-name{
-    margin-top: 0px;
     font-size: 12px;
+    font-weight: 700;
+    text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
 }
 .detail{
     text-align: center;
@@ -45,61 +49,94 @@ img{
     right: -5px;
     background-color: #b32b30;
 }
+.container-data{
+  position: absolute;
+  bottom: 10px;
+  background-color: #0000ff1f;
+  width: 140px;
+  height: 100px;
+  border-radius: 5px 5px 0 0;
+  text-align: center;
+}
 .damage{
   padding-top: 5px;
 }
 .ribbon {
+  position: absolute;
+  right: -5px;
+  top: -5px;
+  z-index: 1;
+  overflow: hidden;
+  width: 75px;
+  height: 75px;
+  text-align: right;
+}
+
+.ribbon span {
+  font-size: 10px;
+  font-weight: bold;
+  color: #FFF;
+  text-transform: uppercase;
+  text-align: center;
+  line-height: 12px;
+  transform: rotate(45deg);
+  -webkit-transform: rotate(45deg);
+  width: 100px;
+  display: block;
+  box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
+  position: absolute;
+  top: 19px;
+  right: -21px;
+}
+
+.ribbon span::before {
+  content: "";
+  position: absolute;
+  left: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+
+.ribbon span::after {
+  content: "";
+  position: absolute;
+  right: 0px;
+  top: 100%;
+  z-index: -1;
+  border-left: 3px solid transparent;
+  border-right: 3px solid transparent;
+  border-bottom: 3px solid transparent;
+}
+.ribbon.red span {
+  background: linear-gradient(#FF0000 0%, #CC0000 100%);
+}
+
+.ribbon.blue span {
+  background: linear-gradient(#0000FF 0%, #0033CC 100%);
+}
+
+.ribbon.green span {
+  background: linear-gradient(#008000 0%, #006400 100%);
+}
+.ribbon.white span {
+  background: linear-gradient(#393d39 0%, #2f312f 100%);
+}
+.ribbon.yellow span {
+  background: linear-gradient(#dbc711 0%, #e2cd0a 100%);
+}
+.element{
     position: absolute;
-    right: -5px; top: -5px;
-    z-index: 1;
-    overflow: hidden;
-    width: 75px; height: 75px;
-    text-align: right;
-  }
-  .ribbon span {
-    font-size: 10px;
-    font-weight: bold;
-    color: #FFF;
-    text-transform: uppercase;
+    width: 135.5px;
+    height: 100px;
+    border-radius: 5px 5px 0 0;
+    top: 0;
     text-align: center;
-    line-height: 12px;
-    transform: rotate(45deg);
-    -webkit-transform: rotate(45deg);
-    width: 100px;
-    display: block;
-    background: #79A70A;
-    background: linear-gradient(#36813E 0%, #4CB557 100%);
-    box-shadow: 0 3px 10px -5px rgba(0, 0, 0, 1);
-    position: absolute;
-    top: 19px; right: -21px;
-  }
-  .ribbon span::before {
-    content: "";
-    position: absolute; left: 0px; top: 100%;
-    z-index: -1;
-    border-left: 3px solid #4CB557;
-    border-right: 3px solid transparent;
-    border-bottom: 3px solid transparent;
-    border-top: 3px solid #4CB557;
-  }
-  .ribbon span::after {
-    content: "";
-    position: absolute; right: 0px; top: 100%;
-    z-index: -1;
-    border-left: 3px solid transparent;
-    border-right: 3px solid #4CB557;
-    border-bottom: 3px solid transparent;
-    border-top: 3px solid #4CB557;
-  }
-  hr {
-    position: relative;
-    margin-top: 60px;
-    height: 2px;
-    width: 60%;
-    background-color: black;
-    border: none;
-  }
-  .element{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background:
     conic-gradient(
       from 180deg at 50% 50%,
@@ -129,6 +166,7 @@ img{
       rgba(66, 255, 107, 1) 100%
     );
   background-blend-mode: screen, difference, normal;
+  border: 2px solid rgba(123, 123, 90, 0.797);
   }
   .move-center{
     transform: translateX(180px) rotate(35deg);
