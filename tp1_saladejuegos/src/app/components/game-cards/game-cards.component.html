@@ -14,20 +14,21 @@
                 <div class="progress-bar" id="hp-bar" [ngStyle]="{'width.%': playerOne.hp}">
                     <span class="progress-bar-text" id="hp-number">{{playerOne.hp}}HP</span>
                 </div>
-            </div>
-            <div id="player-cards" class="card-container">
-                <app-card  *ngFor="let item of playerOne.cards, let i = index" 
-                    [type]="item.type"
-                    [img]="item.img"
-                    [name]="item.name"
-                    [detail]="item.detail"
-                    [damage]="item.damage"
-                    (click)="onClick(i)"
-                    >
-                </app-card>
-            </div>
-            </div>
+            </div>          
         </div>
+        <div id="player-cards" class="card-container">
+            <app-card  *ngFor="let item of playerOne.cards, let i = index" 
+                [type]="item.type"
+                [img]="item.img"
+                [name]="item.name"
+                [detail]="item.detail"
+                [damage]="item.damage"
+                [class.disabled]="isOnClickInProgress"
+                (click)="onClick(i)"
+                >
+            </app-card>
+        </div>
+    </div>
         <div id="computer" class="container-cpu">
             <h2 class="cpu-name">CPU</h2>
             <div class="progress">
@@ -35,17 +36,15 @@
                     <span class="progress-bar-text" id="hp-number-cpu">{{playerCpu.hp}}HP</span>
                 </div>
             </div>
-            <div id="computer-cards" class="card-container">
-                <div id="player-cards" class="card-container">
-                    <app-card *ngFor="let item of playerCpu.cards" 
-                        [type]="item.type"
-                        [img]="item.img"
-                        [name]="item.name"
-                        [detail]="item.detail"
-                        [damage]="item.damage">
-                        
-                    </app-card>
-                </div>
-            </div>
+        </div>
+        <div id="player-cards" class="card-container-cpu">
+            <app-card *ngFor="let item of playerCpu.cards" 
+                [type]="item.type"
+                [img]="item.img"
+                [name]="item.name"
+                [detail]="item.detail"
+                [damage]="item.damage">
+                
+            </app-card>
         </div>
     </div>

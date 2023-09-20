@@ -10,26 +10,34 @@
 
 .card-container {
     display: flex;
-    justify-content: center;
+    justify-content: left;
     align-items: flex-end;
+    margin-top: 40px;
     height: 250px;
 }
-
-.card-container app-card {
+.card-container-cpu{
+    display: flex;
+    justify-content: right;
+    align-items: flex-start;
+    margin-bottom: 40px;
+    height: 250px;
+}
+.card-container app-card, .card-container-cpu app-card {
     margin-left: -30px;
     transition: margin-left 0.2s ease, transform 0.2s ease;
     transform-origin: bottom center;
+    cursor: pointer;
     position: relative; /* Añade posición relativa */
     z-index: 1;
 }
 
-.card-container app-card:hover {
-    margin-left: -40px;
+.card-container app-card:hover, .card-container-cpu app-card:hover {
+    margin-left: -70px;
     transform: translateY(-10px) rotateX(-10deg);
-    z-index: 2; /* Ajusta el nivel de elevación */
+    z-index: 10; /* Ajusta el nivel de elevación */
 }
 
-.card-container app-card:first-child {
+.card-container app-card:first-child, .card-container-cpu app-card:first-child {
     margin-left: 0;
 }
 
@@ -89,11 +97,15 @@
     transform-origin: center center; 
     z-index: 99;
 }
+.disabled {
+    pointer-events: none;  /* Deshabilita eventos de puntero (como clics) en elementos deshabilitados */
+    opacity: 0.5;  /* Puedes reducir la opacidad para indicar visualmente que está deshabilitado */
+  }
 @media (min-width:1025px) { 
     .container-player{
         position: absolute;
-        top: 0;
         left: 0;
+        top: 0;
     }
     .container-cpu{
         position: absolute;
@@ -104,8 +116,8 @@
 @media (min-width:1281px) { 
     .container-player{
         position: absolute;
-        top: 0;
         left: 0;
+        top: 0;
     }
     .container-cpu{
         position: absolute;
