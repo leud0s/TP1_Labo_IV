@@ -68,3 +68,21 @@
     font-weight: bold;
     color: #cce7f5;
 }
+.move-center{
+    transform: translateX(180px) rotate(35deg);
+    top: 40%;
+    left: 43%;
+    transform-origin: center center;
+    z-index: 99;
+}
+.move-center {
+    position: fixed;
+    transition: transform 3s ease-out, filter 3s ease-out;
+}
+.move-center-player {
+    transform: translateX(180px) rotate(35deg);
+    top: 40%;
+    left: 43%;
+    transform-origin: center center; 
+    z-index: 99;
+}
