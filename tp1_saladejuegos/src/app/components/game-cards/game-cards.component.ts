@@ -9,15 +9,15 @@ import { Player } from 'src/app/models/player.model';
 })
 export class GameCardsComponent implements OnInit{
   @Input() title: string;
-  public listCards = cards;
-  public selectedCardIndex:number;
-  result: string = "Esperando selección...";
-  playerHP: number = 100;
-  cpuHP: number = 100;
-  public playerOne = new Player(100, this.dealCards(5), "");
-  public playerCpu = new Player(100, this.dealCards(5), "");
-  points: number = 0;  // Inicializar el contador de puntos
-  isGameOver: boolean = false;
+listCards = cards;
+selectedCardIndex: number;
+result = "Esperando selección...";
+playerHP = 100;
+cpuHP = 100;
+playerOne = new Player(100, this.dealCards(5), "");
+playerCpu = new Player(100, this.dealCards(5), "");
+points = 0;
+isGameOver = false;
   constructor(){
    
   }
@@ -46,25 +46,49 @@ export class GameCardsComponent implements OnInit{
     switch(playerCard.type){
       case "Cura":
         this.playerOne.hp += playerDamage;
-        if(this.playerOne.hp <= 100) this.playerOne.hp = 100;
+        if(this.playerOne.hp >= 100)
+          { this.playerOne.hp = 100;}
         playerDamage = 0;
         break;
       case "Roba vida":
         this.playerOne.hp += playerDamage;
         break;
       case "Defesa":
+        if(playerCard.type !== "Defensa"){
+          computerDamage -= playerDamage;
+          playerDamage = 0;
+        }
         break;
       case "Devolución":
+          computerDamage = playerDamage;
+          playerDamage = 0;
+        break;
+    }
+    switch(computerCard.type){
+      case "Cura":
+        this.playerCpu.hp += computerDamage;
+        if(this.playerCpu.hp >= 100) this.playerCpu.hp = 100;
+        computerDamage = 0;
+        break;
+      case "Roba vida":
+        this.playerCpu.hp += computerDamage;
+        break;
+      case "Defesa":
+          if(playerCard.type !== "Defensa"){
+            playerDamage -= computerDamage;
+            computerDamage = 0;
+          }
+        break;
+      case "Devolución":
+          computerDamage = playerDamage;
+          playerDamage = 0;
         break;
     }
     this.playerCpu.hp -= playerCard.damage;
     this.playerOne.hp -= computerCard.damage;
-    if(this.playerOne.hp < 0){
-      this.playerOne.hp = 0;
-    }
-    if(this.playerCpu.hp < 0){
-      this.playerCpu.hp = 0;
-    }
+
+    this.playerOne.hp = this.playerOne.hp < 0 ? 0 : this.playerOne.hp;
+    this.playerCpu.hp = this.playerCpu.hp < 0 ? 0 : this.playerCpu.hp;
    
     if (playerDamage > computerDamage) {
       this.result = "¡Has ganado la ronda!";
@@ -92,7 +116,7 @@ private endGame() {
   if (this.playerOne.hp > this.playerCpu.hp) {
     this.result = "¡Has ganado el juego!";
     this.points += 5;
-  } else if (this.playerOne.hp == this.playerCpu.hp) {
+  } else if (this.playerOne.hp === this.playerCpu.hp) {
     this.result = "La ronda terminó en empate.";
     this.points += 3;
   } else {
