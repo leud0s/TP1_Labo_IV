@@ -15,10 +15,28 @@
 .card-container {
     display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    gap: 10px;
-    position: relative;
+    align-items: flex-end;
+    height: 200px;
 }
+
+.card-container app-card {
+    margin-left: -10px;
+    transition: margin-left 0.2s ease, transform 0.2s ease;
+    transform-origin: bottom center;
+    position: relative; /* Añade posición relativa */
+    z-index: 1;
+}
+
+.card-container app-card:hover {
+    margin-left: -40px;
+    transform: translateY(-10px) rotateX(-10deg);
+    z-index: 2; /* Ajusta el nivel de elevación */
+}
+
+.card-container app-card:first-child {
+    margin-left: 0;
+}
+
 
 .player-name{
     color: #428bca;
