@@ -44,7 +44,7 @@ isOnClickInProgress: boolean = false;
 
     const playerCard = this.playerOne.cards[playerCardIndex];
     const computerCard = this.playerCpu.cards[computerCardIndex];
-    
+
     let playerDamage = playerCard.damage;
     let computerDamage = computerCard.damage;
     switch(playerCard.type){
@@ -103,20 +103,20 @@ isOnClickInProgress: boolean = false;
     }
     
     setTimeout(() => {
-      console.log(this.playerCpu.cards);
+
       this.playerOne.cards.splice(playerCardIndex, 1);
         this.playerCpu.cards.splice(computerCardIndex, 1);
         this.updateCardIds();
     }, 1700); // Espera 1 segundo para que termine la animación
-    
+
     this.isOnClickInProgress = false;
-        // Comprueba el resultado final
-        if (this.playerOne.cards.length === 0 || this.playerCpu.cards.length === 0 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
-            this.endGame();
-            this.isGameOver = true;
-        }
+
+        if (this.playerOne.cards.length === 1 || this.playerCpu.cards.length === 1 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
+          this.endGame();
+      }
 }
 private endGame() {
+  this.isGameOver = true;
   if (this.playerOne.hp > this.playerCpu.hp) {
     this.result = "¡Has ganado el juego!";
     this.points += 5;
