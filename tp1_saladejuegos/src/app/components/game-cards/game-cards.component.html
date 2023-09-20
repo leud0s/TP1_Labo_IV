@@ -3,9 +3,7 @@
         <div>
             <p>Puntos: {{ points }}</p>
             <p>{{ result }}</p>
-            <button mat-fab color="accent" (click)="restartGame()" *ngIf="isGameOver">
-                <mat-icon></mat-icon>
-              </button>
+            <button (click)="restartGame()" *ngIf="isGameOver">Reiniciar Juego</button>
           </div>
           
     </div>

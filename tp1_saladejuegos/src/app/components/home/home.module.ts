@@ -6,6 +6,7 @@ import { GameCardsComponent } from '../game-cards/game-cards.component';
 import { CardComponent } from '../card/card.component';
 import {MatButtonModule} from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
+import {MatDialogModule} from '@angular/material/dialog';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { MatIconModule } from '@angular/material/icon';
     CommonModule,
     HomeRoutingModule,
     MatButtonModule, 
-    MatIconModule
+    MatIconModule,
+    MatDialogModule
       // Agrega el módulo de enrutamiento a los imports
   ]
 })

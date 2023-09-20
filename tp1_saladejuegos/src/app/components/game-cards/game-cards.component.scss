@@ -1,26 +1,12 @@
-.container-title{
-    background: rgba(255, 255, 255, 0.656);
-    border-radius: 16px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-    backdrop-filter: blur(3.5px);
-    -webkit-backdrop-filter: blur(3.5px);
-    border: 1px solid rgba(0, 0, 0, 0.01);
+.container-game{
+   color: #cce7f5;
 }
 
 .title-game {
     color: #7c1ca4;
     text-shadow: 4px 0px 4px rgba(185, 168, 168, 0.733);
 }
-.container-player{
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-.container-cpu{
-    position: absolute;
-    bottom: 0;
-    right: 0;
-}
+
 .card-container {
     display: flex;
     justify-content: center;
@@ -53,20 +39,7 @@
 .cpu-name{
     color: #42ca59;
 }
-#result-text {
-    font-size: 18px;
-    margin: 10px;
-    color: #36081f;
-    font-weight: 700;
-    text-shadow: 4px 0px 4px rgba(0, 0, 0, 0.849);
-}
 
-#play-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    cursor: po
-    inter;
-}
 .progress {
     position: relative;
     height: 35px;
@@ -114,4 +87,28 @@
     left: 43%;
     transform-origin: center center; 
     z-index: 99;
+}
+@media (min-width:1025px) { 
+    .container-player{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .container-cpu{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    } 
+}
+@media (min-width:1281px) { 
+    .container-player{
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    .container-cpu{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+    } 
 }

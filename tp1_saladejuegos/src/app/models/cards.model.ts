@@ -156,4 +156,13 @@ export const cards = [
     img: './assets/Cards/murcielagos.png',
     type: 'Roba vida',
   },
+  {
+    id: 20,
+    name: 'Posion',
+    damage: 15,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/posion.png',
+    type: 'Cura',
+  },
 ];

@@ -27,6 +27,7 @@ img{
   filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.7));
 }
 .card-name{
+    padding-top: 20px;
     font-size: 12px;
     font-weight: 700;
     text-shadow: 4px 4px 2px rgba(0,0,0,0.6);
@@ -51,15 +52,16 @@ img{
 }
 .container-data{
   position: absolute;
-  bottom: 10px;
+  bottom: 0px;
   background-color: #0000ff1f;
   width: 140px;
-  height: 100px;
+  height: 120px;
   border-radius: 5px 5px 0 0;
   text-align: center;
 }
 .damage{
   padding-top: 5px;
+  font-weight: 500;
 }
 .ribbon {
   position: absolute;
@@ -168,13 +170,6 @@ img{
   background-blend-mode: screen, difference, normal;
   border: 2px solid rgba(123, 123, 90, 0.797);
   }
-  .move-center{
-    transform: translateX(180px) rotate(35deg);
-    top: 40%;
-    left: 43%;
-    transform-origin: center center;
-    z-index: 99;
-}
 .move-center {
     position: fixed;
     transition: transform 3s ease-out, filter 3s ease-out;

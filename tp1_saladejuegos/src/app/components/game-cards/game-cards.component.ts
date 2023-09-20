@@ -43,7 +43,20 @@ export class GameCardsComponent implements OnInit{
     
     let playerDamage = playerCard.damage;
     let computerDamage = computerCard.damage;
-        
+    switch(playerCard.type){
+      case "Cura":
+        this.playerOne.hp += playerDamage;
+        if(this.playerOne.hp <= 100) this.playerOne.hp = 100;
+        playerDamage = 0;
+        break;
+      case "Roba vida":
+        this.playerOne.hp += playerDamage;
+        break;
+      case "Defesa":
+        break;
+      case "Devolución":
+        break;
+    }
     this.playerCpu.hp -= playerCard.damage;
     this.playerOne.hp -= computerCard.damage;
     if(this.playerOne.hp < 0){
