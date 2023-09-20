@@ -30,8 +30,9 @@ isOnClickInProgress: boolean = false;
     let idCounter = 1;
     for(let i = 0; i < numCards; i++){
         const randomIndex = Math.floor(Math.random() * this.listCards.length);
-        const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
-        dealCards.push(card);
+        dealCards.push(this.listCards[randomIndex]);
+        /*const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
+        dealCards.push(card);*/
     }
     return dealCards;
   }
