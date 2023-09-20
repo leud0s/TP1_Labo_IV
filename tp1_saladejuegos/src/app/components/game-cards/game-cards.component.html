@@ -3,7 +3,7 @@
         <div>
             <p>Puntos: {{ points }}</p>
             <p>{{ result }}</p>
-            <button (click)="restartGame()" *ngIf="isGameOver">Reiniciar Juego</button>
+            <button (click)="restartGame()" *ngIf="isGameOver" mat-raised-button color="warn">Reiniciar Juego</button>
           </div>
           
     </div>
