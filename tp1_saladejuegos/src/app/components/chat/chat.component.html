@@ -5,7 +5,7 @@
 <div class="card text-center cardContainer" *ngIf="userIsLogged && showChat">
   <div class="card-header">
       CHAT
-      <div class="close-chat" (click)="showChat=false">X</div>
+      <button type="button" class="btn-close" aria-label="Close" (click)="showChat=false"></button>
   </div>
   <div class="card-body">
     <div class="container-messages h-100">
@@ -16,7 +16,6 @@
       </div>
     </div>
   </div>
-
   <form class="card-footer text-muted input-group" (ngSubmit)="sendMessage()">
     <input type="text" class="form-control" placeholder="Ingresa tu mensaje" [(ngModel)]="message"
     [ngModelOptions]="{standalone:true}">

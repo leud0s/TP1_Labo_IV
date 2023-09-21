@@ -93,3 +93,20 @@ p{
   text-align: right;
   margin: 0px;
 }
+.btn-close{
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+@keyframes scrollDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}
+
+.scroll-down-animation {
+  animation: scrollDown 0.5s ease-in-out;
+}
