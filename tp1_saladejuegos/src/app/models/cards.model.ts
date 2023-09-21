@@ -46,7 +46,7 @@ export const cards = [
     detail:
       '-Causa mucho daño -Que bien! -Pero te descuenta 12 puntos -Que mal',
     img: './assets/Cards/muneco-de-vudu.png',
-    type: "Ataque"
+    type: "Colateral"
   },
   {
     id: 7,
@@ -75,10 +75,10 @@ export const cards = [
   {
     id: 10,
     name: 'Runas',
-    damage: 15,
+    damage: 0,
     detail: 'Runas elficas, hacen daño',
     img: './assets/Cards/runas.png',
-    type: "Ataque"
+    type: "Devolución"
   },
   {
     id: 11,
@@ -158,11 +158,66 @@ export const cards = [
   },
   {
     id: 20,
-    name: 'Posion',
+    name: 'Elixir',
     damage: 15,
     detail:
       'Si sangre, sos casi vampiro, pero no inmortal',
-    img: './assets/Cards/posion.png',
+    img: './assets/Cards/elixir.png',
     type: 'Cura',
   },
+  {
+    id: 21,
+    name: 'Tabla Ouija',
+    damage: 15,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/tablero-del-ouija.png',
+    type: 'Cura',
+  },
+  {
+    id: 22,
+    name: 'Libro de Conjuros',
+    damage: 15,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/libro-de-conjuros.png',
+    type: 'Ataque',
+  },
+  {
+    id: 23,
+    name: 'Cristal',
+    damage: 15,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/cristal.png',
+    type: 'Cura',
+  },
+  ,
+  {
+    id: 24,
+    name: 'Ojo Estrella',
+    damage: 15,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/estrella-de-david.png',
+    type: 'Ataque',
+  },
+  {
+    id: 25,
+    name: 'Cristal',
+    damage: 0,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/bola-de-cristal.png',
+    type: 'Devolución',
+  },
+  {
+    id: 26,
+    name: 'Escudo Pentagrama',
+    damage: 30,
+    detail:
+      'Si sangre, sos casi vampiro, pero no inmortal',
+    img: './assets/Cards/pentagrama.png',
+    type: 'Defensa',
+  }
 ];

@@ -1,6 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { cards } from 'src/app/models/cards.model';
 import { Player } from 'src/app/models/player.model';
+import {MatDialog, MatDialogModule} from '@angular/material/dialog';
+import {MatButtonModule} from '@angular/material/button';
 
 @Component({
   selector: 'app-game-cards',
@@ -19,7 +21,9 @@ playerCpu = new Player(100, this.dealCards(5), "");
 points = 0;
 isGameOver: boolean = false;
 isOnClickInProgress: boolean = false;
-  constructor(){
+computerCardIndex: number;
+condition = false;
+  constructor(public dialog: MatDialog){
    
   }
   ngOnInit(): void {
@@ -29,7 +33,7 @@ isOnClickInProgress: boolean = false;
     const dealCards = [];
     let idCounter = 1;
     for(let i = 0; i < numCards; i++){
-        const randomIndex = Math.floor(Math.random() * this.listCards.length);
+        const randomIndex = Math.floor(Math.random() * this.listCards.length - 0.5);
         dealCards.push(this.listCards[randomIndex]);
         /*const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
         dealCards.push(card);*/
@@ -145,6 +149,9 @@ restartGame() {
   this.playerCpu = new Player(100, this.dealCards(5), "");
   this.result = "Esperando selección...";
   this.isGameOver = false;
+}
+isIndexSelected(index: number): boolean {
+    return index === this.computerCardIndex;
 }
 
 }

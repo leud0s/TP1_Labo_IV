@@ -115,7 +115,6 @@ img{
 .ribbon.red span {
   background: linear-gradient(#FF0000 0%, #CC0000 100%);
 }
-
 .ribbon.blue span {
   background: linear-gradient(#0000FF 0%, #0033CC 100%);
 }
@@ -129,9 +128,12 @@ img{
 .ribbon.yellow span {
   background: linear-gradient(#dbc711 0%, #e2cd0a 100%);
 }
+.ribbon.orange span {
+  background: linear-gradient(#db7311 0%, #e67104 100%);
+}
 .element{
     position: absolute;
-    width: 135.5px;
+    width: 135.7px;
     height: 100px;
     border-radius: 5px 5px 0 0;
     top: 0;
@@ -180,4 +182,11 @@ img{
     left: 43%;
     transform-origin: center center; 
     z-index: 99;
+}
+.move-center-cpu {
+  transform: translateX(-180px) rotate(-35deg);
+  top: 39%;
+  left: 40%;
+  transform-origin: center center; 
+  z-index: 99;
 }

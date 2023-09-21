@@ -7,7 +7,6 @@
     color: #7c1ca4;
     text-shadow: 4px 0px 4px rgba(185, 168, 168, 0.733);
 }
-
 .card-container {
     display: flex;
     justify-content: left;
@@ -24,16 +23,15 @@
 }
 .card-container app-card, .card-container-cpu app-card {
     margin-left: -30px;
-    transition: margin-left 0.2s ease, transform 0.2s ease;
+    transition: margin-left 0.5s ease, transform 0.5s ease;
     transform-origin: bottom center;
-    cursor: pointer;
     position: relative; /* Añade posición relativa */
     z-index: 1;
 }
 
 .card-container app-card:hover, .card-container-cpu app-card:hover {
-    margin-left: -70px;
-    transform: translateY(-10px) rotateX(-10deg);
+    margin-left: -40px;
+    transform: translateY(-40px) rotateX(-10deg);
     z-index: 10; /* Ajusta el nivel de elevación */
 }
 
@@ -79,24 +77,17 @@
     font-weight: bold;
     color: #cce7f5;
 }
-.move-center{
-    transform: translateX(180px) rotate(35deg);
-    top: 40%;
-    left: 43%;
-    transform-origin: center center;
-    z-index: 99;
-}
-.move-center {
-    position: fixed;
-    transition: transform 3s ease-out, filter 3s ease-out;
-}
-.move-center-player {
-    transform: translateX(180px) rotate(35deg);
-    top: 40%;
-    left: 43%;
+.move-center-cpu {
+    transform: translateX(-180px) rotate(-35deg);
+    top: 39%;
+    left: 40%;
     transform-origin: center center; 
     z-index: 99;
-}
+  }
+/*.card-container-cpu app-card.ng-leave {
+    transition: opacity 0.5s, transform 0.5s;
+}*/
+
 .disabled {
     pointer-events: none;  /* Deshabilita eventos de puntero (como clics) en elementos deshabilitados */
     opacity: 0.5;  /* Puedes reducir la opacidad para indicar visualmente que está deshabilitado */
@@ -111,6 +102,13 @@
         position: absolute;
         bottom: 0;
         right: 0;
+    }
+    .card-container-cpu{
+        display: flex;
+        justify-content: right;
+        align-items: flex-start;
+        margin-bottom: 190px;
+        height: 550px;
     } 
 }
 @media (min-width:1281px) { 

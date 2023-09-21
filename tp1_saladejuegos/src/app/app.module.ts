@@ -22,6 +22,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { ChatComponent } from './components/chat/chat.component';
 
 
 @NgModule({
@@ -33,6 +34,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         QuienSoyComponent,
         SpinnerComponent,
         SnackBarComponent,
+        ChatComponent,
     ],
     providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase }

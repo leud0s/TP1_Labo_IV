@@ -1,0 +1,23 @@
+<div class="card text-center cardContainer">
+  <div class="card-header">
+      CHAT
+  </div>
+  <div class="card-body">
+    <div>
+      <p *ngFor="let message of messages" class="p-2"
+        [ngClass]=""
+      >
+        {{message.text}}
+      </p>
+    </div>
+  </div>
+  <form class="card-footer text-muted input-group" (ngSubmit)="sendMessage()">
+    <input type="text" class="form-control" placeholder="Ingresa tu mensaje" [(ngModel)]="message"
+    [ngModelOptions]="{standalone:true}">
+    <div class="input-group-append" (click)="sendMessage()">
+        <span class="input-group-text" id="basic-addon2">
+          <img class="img-send" src="../../../assets/send.svg" alt="send message">
+        </span>
+      </div>
+    </form>
+</div>
