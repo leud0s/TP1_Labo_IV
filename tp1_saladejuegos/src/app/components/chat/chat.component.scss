@@ -13,6 +13,7 @@
 .card-body{
   padding: 0.5rem;
   background-image: url("../../../assets/background-message.jpg");
+  overflow: hidden;
 }
 .card-footer{
   position: absolute;
@@ -67,8 +68,28 @@ p{
   width: 60px;
   height: 60px;
   cursor: pointer;
+  background: linear-gradient(to right, #e44491, #7c1ca4);
+  background-color: #7c1ca4;
+  border-radius: 100%;
+  box-shadow: 0 0 10px 2px #6e3a64;
 }
 .icon-button{
   width: 40px;
   height: 40px;
+}
+.user-name{
+  font-size: 9px;
+  text-align: left;
+  color: red;
+  font-weight: 400;
+  margin: 0px;
+}
+.text{
+  font-size: 12px;
+  margin: 0px;
+}
+.user-date{
+  font-size: 9px;
+  text-align: right;
+  margin: 0px;
 }

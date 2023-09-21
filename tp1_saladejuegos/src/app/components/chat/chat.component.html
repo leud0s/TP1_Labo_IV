@@ -1,5 +1,5 @@
 <div *ngIf="userIsLogged && !showChat" class="chat-icon-container" (click)="showChat=true">
-  <img class="icon-button" src="../../../assets/chat.jpg" >
+  <img class="icon-button" src="../../../assets/chat.png" >
 </div>
 
 <div class="card text-center cardContainer" *ngIf="userIsLogged && showChat">
@@ -9,12 +9,15 @@
   </div>
   <div class="card-body">
     <div class="container-messages h-100">
-      <p *ngFor="let message of messages" class="p-2"
-        [ngClass]="(userIsLogged.uid===message.sender)? 'send':'recived'">
-        {{message.text}}
-      </p>
+      <div *ngFor="let message of messages" class="p-2 mb-1 msg"
+           [ngClass]="{'send': userIsLogged.uid === message.uid, 'received': userIsLogged.uid !== message.uid}">
+        <p class="user-name">{{message.user}}</p>
+        <p class="text">{{message.text}}</p>
+        <p class="user-date">{{message.date}}</p>
+      </div>
     </div>
   </div>
+  
   <form class="card-footer text-muted input-group" (ngSubmit)="sendMessage()">
     <input type="text" class="form-control" placeholder="Ingresa tu mensaje" [(ngModel)]="message"
     [ngModelOptions]="{standalone:true}">

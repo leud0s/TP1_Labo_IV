@@ -1,36 +1,63 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
+import { QuerySnapshot } from 'firebase/firestore';
 import { FirebaseService } from 'src/app/services/firebase.service';
+import { ActivatedRoute } from '@angular/router';
+import { Message } from 'src/app/models/message.model';
+
 @Component({
   selector: 'app-chat',
   templateUrl: './chat.component.html',
   styleUrls: ['./chat.component.scss']
 })
-export class ChatComponent {
-  userIsLogged:any;
-  showChat:boolean = true;
-  message:string = "";
-  messages: any = [
-    {
-      
-    }
-  ]
-  constructor(private auth: FirebaseService){}
-  ngOnInit(){
-    this.auth.getUserLogged().subscribe(user =>{
-      this.userIsLogged = user;
+export class ChatComponent implements OnInit {
+  messages$: Observable<QuerySnapshot<Message>>;
+  userIsLogged: any;
+  showChat = false;
+  userName: any;
+  message = '';
+  messages: Message[] = [];
+
+  constructor(private auth: FirebaseService, private router: ActivatedRoute) {}
+
+  ngOnInit(): void {
+    this.router.queryParams.subscribe(params => {
+      this.userName = params['name'];
     });
+
+    this.messages$ = this.auth.getUserLogged().pipe(
+      switchMap(user => {
+        this.userIsLogged = user;
+        return this.auth.loadMessages();
+      })
+    );
+
+    this.messages$.subscribe(
+      (querySnapshot) => {
+        this.messages = querySnapshot.docs.map(doc => ({
+          uid: doc.id,
+          user: doc.data().user,
+          text: doc.data().text,
+          date: doc.data().date
+        }));
+      },
+      (error) => {
+        console.error('Error obteniendo documentos: ', error);
+      }
+    );
   }
-  sendMessage(){
-    console.log("sendMessage");
-    let messageNew={
-      sender: this.userIsLogged.uid,
-      text: this.message
-    }
+
+  sendMessage(): void {
+    const now = new Date();
+    const messageNew: Message = {
+      uid: this.userIsLogged.uid,
+      user: this.userName,
+      text: this.message,
+      date: now.toLocaleString(),
+    };
+
+    this.auth.saveMessages(messageNew);
     this.messages.push(messageNew);
-
   }
-  closeChat(){
-
-  }
-
 }
