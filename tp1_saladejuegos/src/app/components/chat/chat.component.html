@@ -9,15 +9,14 @@
   </div>
   <div class="card-body">
     <div class="container-messages h-100">
-      <div *ngFor="let message of messages" class="p-2 mb-1 msg"
-           [ngClass]="{'send': userIsLogged.uid === message.uid, 'received': userIsLogged.uid !== message.uid}">
+      <div *ngFor="let message of messages" class="p-2 mb-1 msg" [ngClass]="determineMessageClass(message)">
         <p class="user-name">{{message.user}}</p>
         <p class="text">{{message.text}}</p>
         <p class="user-date">{{message.date}}</p>
       </div>
     </div>
   </div>
-  
+
   <form class="card-footer text-muted input-group" (ngSubmit)="sendMessage()">
     <input type="text" class="form-control" placeholder="Ingresa tu mensaje" [(ngModel)]="message"
     [ngModelOptions]="{standalone:true}">

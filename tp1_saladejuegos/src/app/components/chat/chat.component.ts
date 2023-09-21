@@ -36,7 +36,7 @@ export class ChatComponent implements OnInit {
     this.messages$.subscribe(
       (querySnapshot) => {
         this.messages = querySnapshot.docs.map(doc => ({
-          uid: doc.id,
+          uid: doc.data().uid,
           user: doc.data().user,
           text: doc.data().text,
           date: doc.data().date
@@ -59,5 +59,8 @@ export class ChatComponent implements OnInit {
 
     this.auth.saveMessages(messageNew);
     this.messages.push(messageNew);
+  }
+  determineMessageClass(message: Message): string {
+    return message.uid === this.userIsLogged.uid ? 'send' : 'received';
   }
 }
