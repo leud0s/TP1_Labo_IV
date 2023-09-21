@@ -14,6 +14,12 @@
   padding: 0.5rem;
   background-image: url("../../../assets/background-message.jpg");
 }
+.card-footer{
+  position: absolute;
+  bottom: 0rem;
+  background-color: white;
+  border-radius: 0px 0px 3px 3px;
+}
 .input-group-append{
   cursor: pointer;
 }
@@ -43,4 +49,26 @@ p{
   min-width: 50.01%;
   border-radius: 10px;
   text-align: left;
+}
+.container-messages{
+  overflow: scroll;
+  padding: 0.3rem;
+}
+.container-messages::--webkit-scrollbar{
+  display:none;
+}
+.chat-icon-container{
+  position: fixed;
+  right: 0.5rem;
+  bottom: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  cursor: pointer;
+}
+.icon-button{
+  width: 40px;
+  height: 40px;
 }

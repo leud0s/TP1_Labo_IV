@@ -41,4 +41,7 @@ export class FirebaseService {
     })
 
   }
+  getUserLogged() {
+    return this.auth.authState;
+  }
 }

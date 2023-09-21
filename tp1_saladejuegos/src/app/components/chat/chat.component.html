@@ -1,12 +1,16 @@
-<div class="card text-center cardContainer">
+<div *ngIf="userIsLogged && !showChat" class="chat-icon-container" (click)="showChat=true">
+  <img class="icon-button" src="../../../assets/chat.jpg" >
+</div>
+
+<div class="card text-center cardContainer" *ngIf="userIsLogged && showChat">
   <div class="card-header">
       CHAT
+      <div class="close-chat" (click)="showChat=false">X</div>
   </div>
   <div class="card-body">
-    <div>
+    <div class="container-messages h-100">
       <p *ngFor="let message of messages" class="p-2"
-        [ngClass]=""
-      >
+        [ngClass]="(userIsLogged.uid===message.sender)? 'send':'recived'">
         {{message.text}}
       </p>
     </div>
