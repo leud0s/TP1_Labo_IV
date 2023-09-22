@@ -3,11 +3,10 @@
         <div>
             <p>Puntos: {{ points }}</p>
             <p>{{ result }}</p>
-            <div *ngIf="isGameOver">
-                <app-end-game 
+            <app-end-game 
                 [result]="result" 
-                [points]="points"></app-end-game>
-            </div>
+                [points]="points"
+                [restart]="isGameOver"></app-end-game>
             
         </div>   
     </div>

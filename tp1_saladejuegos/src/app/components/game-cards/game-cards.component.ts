@@ -12,18 +12,19 @@ import { Router } from '@angular/router';
 })
 export class GameCardsComponent implements OnInit{
   @Input() title: string;
-listCards = cards;
-selectedCardIndex: number;
-result = "Esperando selección...";
-playerHP = 100;
-cpuHP = 100;
-playerOne = new Player(100, this.dealCards(5), "");
-playerCpu = new Player(100, this.dealCards(5), "");
-points = 0;
-isGameOver: boolean = true;
-isOnClickInProgress: boolean = false;
-computerCardIndex: number;
-condition = false;
+  listCards = cards;
+  selectedCardIndex: number;
+  result = "Esperando selección...";
+  playerHP = 100;
+  cpuHP = 100;
+  playerOne = new Player(100, this.dealCards(5), "");
+  playerCpu = new Player(100, this.dealCards(5), "");
+  points = 0;
+  isGameOver: boolean = false;
+  isOnClickInProgress: boolean = false;
+  computerCardIndex: number;
+  condition = false;
+
   constructor(public dialog: MatDialog,public router: Router){
    
   }
@@ -34,7 +35,7 @@ condition = false;
     const dealCards = [];
     let idCounter = 1;
     for(let i = 0; i < numCards; i++){
-        const randomIndex = Math.floor(Math.random() * this.listCards.length - 0.5);
+        const randomIndex = Math.floor(Math.random() * this.listCards.length);
         //dealCards.push(this.listCards[randomIndex]);
         const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
         dealCards.push(card);
@@ -46,6 +47,7 @@ condition = false;
       return;
   }
   this.isOnClickInProgress = true;
+  this.isGameOver = false;
     const computerCardIndex = Math.floor(Math.random() * this.playerCpu.cards.length);
 
     const playerCard = this.playerOne.cards[playerCardIndex];
@@ -134,6 +136,7 @@ private endGame() {
     this.points -= 2;
     if(this.points < 0) this.points = 0;
   }
+  this.restartGame();
 }
 private updateCardIds() {
   for (let i = 0; i < this.playerOne.cards.length; i++) {
@@ -149,11 +152,6 @@ restartGame() {
   this.playerOne = new Player(100, this.dealCards(5), "");
   this.playerCpu = new Player(100, this.dealCards(5), "");
   this.result = "Esperando selección...";
-  this.isGameOver = false;
-}
-closeGame(){
-  //this.isGameOver = false;
-  this.router.navigate(['home']);
 }
 isIndexSelected(index: number): boolean {
     return index === this.computerCardIndex;

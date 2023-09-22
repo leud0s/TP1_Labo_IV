@@ -9,7 +9,7 @@ export class EndGameComponent {
   @Input () result:string;
   @Input () points:number;
   
-  restart: boolean = true;
+  @Input () restart: boolean;
   public router: Router;
   closeGame(){
     this.router.navigate(['home']);

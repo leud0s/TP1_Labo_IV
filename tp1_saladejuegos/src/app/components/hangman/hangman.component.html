@@ -1,22 +1,23 @@
 <div class="container-fluid">
-  <app-end-game></app-end-game>
-    <h1 class="title">Juego del Ahorcado</h1>
-    <p>Palabra a adivinar: {{ palabraMostrada }}</p>
-    <p>Intentos restantes: {{ intentosRestantes }}</p>
-  
-    <div>
-      <button *ngFor="let letra of abecedario" class="btn btn-success" (click)="adivinarLetra(letra)" [disabled]="palabraMostrada.includes(letra.toLowerCase())">
-        {{ letra }}
-      </button>
-    </div>
-    
+  <h1 class="title">Juego del Ahorcado</h1>
+  <p>Palabra a adivinar: {{ palabraMostrada }}</p>
+  <p>Intentos restantes: {{ intentosRestantes }}</p>
+
+  <div>
+    <button *ngFor="let letra of abecedario" class="btn btn-success" (click)="adivinarLetra(letra)" [disabled]="palabraMostrada.includes(letra.toLowerCase())">
+      {{ letra }}
+    </button>
+  </div>
+
+  <div *ngIf="gameOver">
+    <app-end-game [restart]="gameOver"></app-end-game>
+
     <div *ngIf="intentosRestantes === 0">
       <p>¡Perdiste! La palabra era: {{ ahorcadoService.obtenerPalabraSeleccionada() }}</p>
-      <app-end-game></app-end-game>
     </div>
+
     <div *ngIf="!palabraMostrada.includes('_')">
       <p>¡Ganaste! Has adivinado la palabra.</p>
-      
     </div>
   </div>
-  
+</div>
