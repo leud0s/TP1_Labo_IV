@@ -4,7 +4,12 @@
         <div>
             <p>Puntos: {{ points }}</p>
             <p>{{ result }}</p>
-            <app-end-game [result]="result" [points]="points" *ngIf="isGameOver"></app-end-game>
+            <app-end-game 
+            [result]="result" 
+            [points]="points"
+            [close]="closeGame()"
+            [restart]="restartGame()"
+            *ngIf="isGameOver"></app-end-game>
         </div>   
     </div>
     <div class="container-players">

@@ -8,4 +8,13 @@ import { Component, Input } from '@angular/core';
 export class EndGameComponent {
   @Input () result:string;
   @Input () points:number;
+  @Input () close: void;
+  @Input () restart: void;
+
+  closeGame(){
+    this.close;
+  }
+  restartGame(){
+    this.restart;
+  }
 }

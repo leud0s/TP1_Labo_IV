@@ -3,7 +3,7 @@ import { cards } from 'src/app/models/cards.model';
 import { Player } from 'src/app/models/player.model';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
-
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-game-cards',
@@ -24,7 +24,7 @@ isGameOver: boolean = true;
 isOnClickInProgress: boolean = false;
 computerCardIndex: number;
 condition = false;
-  constructor(public dialog: MatDialog,){
+  constructor(public dialog: MatDialog,public router: Router){
    
   }
   ngOnInit(): void {
@@ -150,6 +150,10 @@ restartGame() {
   this.playerCpu = new Player(100, this.dealCards(5), "");
   this.result = "Esperando selección...";
   this.isGameOver = false;
+}
+closeGame(){
+  this.isGameOver = false;
+  this.router.navigate(['home']);
 }
 isIndexSelected(index: number): boolean {
     return index === this.computerCardIndex;
