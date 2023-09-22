@@ -1,4 +1,4 @@
-<div class="card-container absolute">
+<div class="card-container absolute" *ngIf="restart">
     <div class="card center">
         <div class="card-header">
           Final del juego
@@ -8,8 +8,8 @@
           <h5 class="card-title">Tu puntaje fue: {{points}}</h5>
           <p class="card-text">¿Que deseas realizar?</p>
           <div class="container-buttons">
-              <button class="btn btn-danger" (click)="closeGame()">Ir a al home</button>
-              <button class="btn btn-primary" (click)="restartGame()">Voler a jugar</button>
+              <button class="btn btn-danger" routerLink="/home">Ir a al home</button>
+              <a class="btn btn-primary" (click)="closeGame()">Voler a jugar</a>
           </div>
         </div>
     </div>

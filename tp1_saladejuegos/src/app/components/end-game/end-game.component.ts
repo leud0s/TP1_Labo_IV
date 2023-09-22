@@ -9,12 +9,12 @@ export class EndGameComponent {
   @Input () result:string;
   @Input () points:number;
   
-  @Input () restart: any;
+  restart: boolean = true;
   public router: Router;
   closeGame(){
     this.router.navigate(['home']);
   }
   restartGame(){
-    this.restart;
+    this.restart = false;
   }
 }

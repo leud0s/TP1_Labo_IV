@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { HangmanService } from 'src/app/services/hangman.service';
+
 const MAX_ERRORS = 6; 
 @Component({
   selector: 'app-hangman',
