@@ -4,6 +4,7 @@ import { Player } from 'src/app/models/player.model';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 
+
 @Component({
   selector: 'app-game-cards',
   templateUrl: './game-cards.component.html',
@@ -19,11 +20,11 @@ cpuHP = 100;
 playerOne = new Player(100, this.dealCards(5), "");
 playerCpu = new Player(100, this.dealCards(5), "");
 points = 0;
-isGameOver: boolean = false;
+isGameOver: boolean = true;
 isOnClickInProgress: boolean = false;
 computerCardIndex: number;
 condition = false;
-  constructor(public dialog: MatDialog){
+  constructor(public dialog: MatDialog,){
    
   }
   ngOnInit(): void {

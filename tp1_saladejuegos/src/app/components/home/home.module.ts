@@ -10,13 +10,15 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
 import {ChatComponent} from '../chat/chat.component';
 import { FormsModule } from '@angular/forms';
+import { EndGameComponent } from '../end-game/end-game.component';
 
 @NgModule({
   declarations: [
     HomeComponent,
     GameCardsComponent,
     CardComponent,
-    ChatComponent
+    ChatComponent,
+    EndGameComponent
   ],
   imports: [
     CommonModule,

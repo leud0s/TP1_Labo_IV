@@ -24,6 +24,7 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 
+
 @NgModule({
     declarations: [
         AppComponent,
