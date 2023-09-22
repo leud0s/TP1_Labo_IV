@@ -4,10 +4,8 @@
         <div>
             <p>Puntos: {{ points }}</p>
             <p>{{ result }}</p>
-            <app-end-game *ngIf="isGameOver"></app-end-game>
-            <button (click)="restartGame()" *ngIf="isGameOver" mat-raised-button color="warn">Reiniciar Juego</button>
-          </div>
-          
+            <app-end-game [result]="result" [points]="points" *ngIf="isGameOver"></app-end-game>
+        </div>   
     </div>
     <div class="container-players">
         <div id="player" class="container-player">

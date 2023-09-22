@@ -7,5 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class EndGameComponent {
   @Input () result:string;
-  @Input () points:string;
+  @Input () points:number;
 }
