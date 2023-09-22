@@ -59,14 +59,23 @@ export class ChatComponent implements OnInit {
 
     this.auth.saveMessages(messageNew);
     this.messages.push(messageNew);
+    setTimeout(()=>{
+      this.scrollToTheLastElementByClassName();
+      this.message = "";
+    },10);
+    
 
   }
   determineMessageClass(message: Message): string {
     return message.uid === this.userIsLogged.uid ? 'send' : 'received';
   }
-  isLastMessage(message: Message): boolean {
-    return message === this.messages[this.messages.length - 1];
-  }
-  
+  scrollToTheLastElementByClassName(){
+    let elements = document.getElementsByClassName('msg');
+    let last: any = elements[(elements.length - 1)];
+    let toppos = last.offsetTop;
+    console.log(toppos);
+    
+    document.getElementById("container-messages").scrollTop = toppos;
+  }  
 
 }

@@ -6,7 +6,7 @@
   bottom: 0.5rem;
 }
 .card-header{
-  background-color: rgb(102, 102, 243);
+  background-color: #7c1ca4;
   color: white;
   font-weight: 700;
 }
@@ -14,6 +14,7 @@
   padding: 0.5rem;
   background-image: url("../../../assets/background-chat.jpeg");
   overflow: hidden;
+  margin-bottom: 22px;
 }
 .card-footer{
   position: absolute;
@@ -45,18 +46,21 @@ p{
 .received{
   display: block;
   float: left;
-  background-color: gray;
+  background-color: #6b59ac;
   color: white;
   min-width: 50.01%;
   border-radius: 10px;
   text-align: left;
+}
+.received  .user-name{
+  color: #22151d;
 }
 .container-messages{
   overflow: scroll;
   padding: 0.3rem;
 }
 .container-messages::--webkit-scrollbar{
-  display:none;
+  -webkit-appearance: none;
 }
 .chat-icon-container{
   position: fixed;
@@ -82,10 +86,10 @@ p{
   height: 22px;
 }
 .user-name{
-  font-size: 9px;
+  font-size: 10px;
   text-align: left;
-  color: red;
-  font-weight: 400;
+  color: #b32b30;
+  font-weight: 800;
   margin: 0px;
 }
 .text{
@@ -101,16 +105,4 @@ p{
   position: absolute;
   top: 0.5rem;
   right: 0.5rem;
-}
-@keyframes scrollDown {
-  from {
-    transform: translateY(0);
-  }
-  to {
-    transform: translateY(100%);
-  }
-}
-
-.scroll-down-animation {
-  animation: scrollDown 0.5s ease-in-out;
 }

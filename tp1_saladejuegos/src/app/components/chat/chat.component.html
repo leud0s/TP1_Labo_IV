@@ -7,14 +7,15 @@
       CHAT
       <button type="button" class="btn-close" aria-label="Close" (click)="showChat=false"></button>
   </div>
-  <div class="card-body">
-    <div class="container-messages h-100">
-      <div *ngFor="let message of messages" class="p-2 mb-1 msg" [ngClass]="determineMessageClass(message)">
+  <div class="card-body" id="card-body">
+    <div id="container-messages" class="container-messages h-100">
+      <div *ngFor="let message of messages" class="p-2 mb-2 msg" [ngClass]="determineMessageClass(message)">
         <p class="user-name">{{message.user}}</p>
         <p class="text">{{message.text}}</p>
         <p class="user-date">{{message.date}}</p>
       </div>
     </div>
+    <span id="final"></span>
   </div>
   <form class="card-footer text-muted input-group" (ngSubmit)="sendMessage()">
     <input type="text" class="form-control" placeholder="Ingresa tu mensaje" [(ngModel)]="message"
