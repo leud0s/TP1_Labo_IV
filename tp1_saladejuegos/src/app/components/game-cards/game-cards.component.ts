@@ -35,9 +35,9 @@ condition = false;
     let idCounter = 1;
     for(let i = 0; i < numCards; i++){
         const randomIndex = Math.floor(Math.random() * this.listCards.length - 0.5);
-        dealCards.push(this.listCards[randomIndex]);
-        /*const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
-        dealCards.push(card);*/
+        //dealCards.push(this.listCards[randomIndex]);
+        const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
+        dealCards.push(card);
     }
     return dealCards;
   }
@@ -116,9 +116,9 @@ condition = false;
     }, 1700); // Espera 1 segundo para que termine la animación
 
     this.isOnClickInProgress = false;
-
-        if (this.playerOne.cards.length === 1 || this.playerCpu.cards.length === 1 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
-          this.endGame();
+    
+    if (this.playerOne.cards.length === 1 || this.playerCpu.cards.length === 1 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
+        this.endGame();
       }
 }
 private endGame() {
@@ -152,7 +152,7 @@ restartGame() {
   this.isGameOver = false;
 }
 closeGame(){
-  this.isGameOver = false;
+  //this.isGameOver = false;
   this.router.navigate(['home']);
 }
 isIndexSelected(index: number): boolean {

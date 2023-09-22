@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-end-game',
   templateUrl: './end-game.component.html',
@@ -8,11 +8,11 @@ import { Component, Input } from '@angular/core';
 export class EndGameComponent {
   @Input () result:string;
   @Input () points:number;
-  @Input () close: void;
-  @Input () restart: void;
-
+  
+  @Input () restart: any;
+  public router: Router;
   closeGame(){
-    this.close;
+    this.router.navigate(['home']);
   }
   restartGame(){
     this.restart;

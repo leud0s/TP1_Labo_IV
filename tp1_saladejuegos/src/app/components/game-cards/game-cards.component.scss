@@ -1,6 +1,7 @@
 .container-game{
    color: #cce7f5;
    font-weight: 900;
+   position: fixed;
 }
 
 .title-game {
@@ -107,8 +108,6 @@
         display: flex;
         justify-content: right;
         align-items: flex-start;
-        margin-bottom: 190px;
-        height: 550px;
     } 
 }
 @media (min-width:1281px) { 
@@ -119,7 +118,7 @@
     }
     .container-cpu{
         position: absolute;
-        bottom: 0;
+        bottom: -40px;
         right: 0;
     } 
 }

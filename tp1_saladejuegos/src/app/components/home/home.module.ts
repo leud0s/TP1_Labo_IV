@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ChatComponent} from '../chat/chat.component';
 import { FormsModule } from '@angular/forms';
 import { EndGameComponent } from '../end-game/end-game.component';
+import { HangmanComponent } from '../hangman/hangman.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { EndGameComponent } from '../end-game/end-game.component';
     GameCardsComponent,
     CardComponent,
     ChatComponent,
-    EndGameComponent
+    EndGameComponent,
+    HangmanComponent
   ],
   imports: [
     CommonModule,
