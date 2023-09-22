@@ -12,7 +12,7 @@
 }
 .card-body{
   padding: 0.5rem;
-  background-image: url("../../../assets/background-message.jpg");
+  background-image: url("../../../assets/background-chat.jpeg");
   overflow: hidden;
 }
 .card-footer{
@@ -76,6 +76,10 @@ p{
 .icon-button{
   width: 40px;
   height: 40px;
+}
+.img-send{
+  width: 22px;
+  height: 22px;
 }
 .user-name{
   font-size: 9px;
