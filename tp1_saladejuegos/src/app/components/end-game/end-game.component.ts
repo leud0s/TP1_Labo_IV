@@ -8,12 +8,9 @@ import { Router } from '@angular/router';
 export class EndGameComponent {
   @Input () result:string;
   @Input () points:number;
-  
   @Input () restart: boolean;
   public router: Router;
-  closeGame(){
-    this.router.navigate(['home']);
-  }
+  
   restartGame(){
     this.restart = false;
   }

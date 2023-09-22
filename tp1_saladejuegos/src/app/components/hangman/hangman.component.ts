@@ -21,7 +21,7 @@ export class HangmanComponent {
 
   resetGame(): void {
     this.palabraMostrada = this.ahorcadoService.obtenerPalabraMostrada();
-    this.intentosRestantes = this.ahorcadoService.obtenerIntentosRestantes();
+    this.intentosRestantes = MAX_ERRORS;
     //this.gameOver = false;
   }
 

@@ -73,7 +73,7 @@ export class HangmanService {
   private intentosRestantes = 6;
 
   constructor() {
-    this.palabraSeleccionada = this.palabras[Math.floor(Math.random() * this.palabras.length)];
+    this.palabraSeleccionada = this.obtenerPalabraSeleccionada();
   }
 
   obtenerPalabraMostrada(): string {
@@ -103,6 +103,6 @@ export class HangmanService {
   }
 
   obtenerPalabraSeleccionada(): string {
-    return this.palabraSeleccionada;
+    return this.palabras[Math.floor(Math.random() * this.palabras.length)];
   }
 }
