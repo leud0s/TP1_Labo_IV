@@ -17,7 +17,7 @@
                 <div class="progress-bar" id="hp-bar" [ngStyle]="{'width.%': playerOne.hp}">
                     <span class="progress-bar-text" id="hp-number">{{playerOne.hp}}HP</span>
                 </div>
-            </div>          
+            </div> <span class="damage">{{damage}}</span>        
         </div>
         <div id="player-cards" class="card-container">
             <app-card  *ngFor="let item of playerOne.cards, let i = index" 
@@ -38,7 +38,7 @@
                 <div class="progress-bar cpu-bar" id="hp-bar-cpu" [ngStyle]="{'width.%': playerCpu.hp}">
                     <span class="progress-bar-text" id="hp-number-cpu">{{playerCpu.hp}}HP</span>
                 </div>
-            </div>
+            </div> <span class="damage">{{damageCpu}}</span> 
         </div>
         <div id="player-cards" class="card-container-cpu">
             <app-card *ngFor="let item of playerCpu.cards" 

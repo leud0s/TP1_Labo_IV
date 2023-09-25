@@ -24,23 +24,43 @@ export class GameCardsComponent implements OnInit{
   isOnClickInProgress: boolean = false;
   computerCardIndex: number;
   condition = false;
+  damage = "";
+  damageCpu = "";
 
   constructor(public dialog: MatDialog,public router: Router){
    
   }
   ngOnInit(): void {
-    
+    console.log(this.playerOne);
+    console.log(this.playerCpu);
   }
-  private dealCards(numCards: number){
+  private dealCards(numCards: number) {
     const dealCards = [];
-    let idCounter = 1;
-    for(let i = 0; i < numCards; i++){
-        const randomIndex = Math.floor(Math.random() * this.listCards.length);
-        //dealCards.push(this.listCards[randomIndex]);
-        const card = { ...this.listCards.splice(randomIndex, 1)[0], id: idCounter++ };
-        dealCards.push(card);
+    let idCounter = 0;
+  
+    // Copia la lista de cartas para trabajar con ella
+    const lista = this.listCards.slice();
+  
+    for (let i = 0; i < numCards; i++) {
+      // Verifica si hay cartas disponibles para repartir
+      if (lista.length === 0) {
+        console.error('No hay suficientes cartas para repartir.');
+        break;
+      }
+  
+      const randomIndex = Math.floor(Math.random() * lista.length);
+      const card = { ...lista.splice(randomIndex, 1)[0], id: idCounter++ };
+      
+      // Agrega la carta al mazo del jugador
+      this.getCards(card);
+  
+      dealCards.push(card);
     }
+  
     return dealCards;
+  }
+  private getCards(card){
+    return this.listCards.push(card);
   }
   public onClick(playerCardIndex: number) {
     if (this.isOnClickInProgress) {
@@ -98,7 +118,8 @@ export class GameCardsComponent implements OnInit{
     }
     this.playerCpu.hp -= playerDamage;
     this.playerOne.hp -= computerDamage;
-
+    this.damage = computerDamage;
+    this.damageCpu = playerDamage;
     this.playerOne.hp = this.playerOne.hp < 0 ? 0 : this.playerOne.hp;
     this.playerCpu.hp = this.playerCpu.hp < 0 ? 0 : this.playerCpu.hp;
    
@@ -113,8 +134,8 @@ export class GameCardsComponent implements OnInit{
     setTimeout(() => {
 
       this.playerOne.cards.splice(playerCardIndex, 1);
-        this.playerCpu.cards.splice(computerCardIndex, 1);
-        this.updateCardIds();
+      this.playerCpu.cards.splice(computerCardIndex, 1);
+        //this.updateCardIds();
     }, 1700); // Espera 1 segundo para que termine la animación
 
     this.isOnClickInProgress = false;
@@ -138,7 +159,7 @@ private endGame() {
   }
   this.restartGame();
 }
-private updateCardIds() {
+/*private updateCardIds() {
   for (let i = 0; i < this.playerOne.cards.length; i++) {
     this.playerOne.cards[i].id = i + 1;
   }
@@ -146,15 +167,14 @@ private updateCardIds() {
   for (let i = 0; i < this.playerCpu.cards.length; i++) {
     this.playerCpu.cards[i].id = i + 1;
   }
-}
+}*/
 restartGame() {
   // Reiniciar el juego
-  this.playerOne = new Player(100, this.dealCards(5), "");
-  this.playerCpu = new Player(100, this.dealCards(5), "");
-  this.result = "Esperando selección...";
+  this.listCards = cards;
+  this.playerOne = new Player(100, this.dealCards(6), "");
+  this.playerCpu = new Player(100, this.dealCards(6), "");
+  //this.result = "Esperando selección...";
 }
-isIndexSelected(index: number): boolean {
-    return index === this.computerCardIndex;
-}
+
 
 }
