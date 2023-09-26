@@ -26,6 +26,7 @@ export class GameCardsComponent implements OnInit{
   condition = false;
   damage = "";
   damageCpu = "";
+  lostCards=[];
 
   constructor(public dialog: MatDialog,public router: Router){
    
@@ -37,11 +38,11 @@ export class GameCardsComponent implements OnInit{
   private dealCards(numCards: number) {
     const dealCards = [];
     let idCounter = 0;
-  
+    
     // Copia la lista de cartas para trabajar con ella
     const lista = this.listCards.slice();
   
-    for (let i = 0; i < numCards; i++) {
+    for (let i = 0; i <= numCards; i++) {
       // Verifica si hay cartas disponibles para repartir
       if (lista.length === 0) {
         console.error('No hay suficientes cartas para repartir.');
@@ -132,12 +133,12 @@ export class GameCardsComponent implements OnInit{
     }
     
     setTimeout(() => {
-
+      this.lostCards.push(this.playerOne.cards[playerCardIndex]);
+      this.lostCards.push(this.playerOne.cards[computerCardIndex]);
       this.playerOne.cards.splice(playerCardIndex, 1);
       this.playerCpu.cards.splice(computerCardIndex, 1);
         //this.updateCardIds();
     }, 1700); // Espera 1 segundo para que termine la animación
-
     this.isOnClickInProgress = false;
     
     if (this.playerOne.cards.length === 1 || this.playerCpu.cards.length === 1 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
@@ -159,15 +160,7 @@ private endGame() {
   }
   this.restartGame();
 }
-/*private updateCardIds() {
-  for (let i = 0; i < this.playerOne.cards.length; i++) {
-    this.playerOne.cards[i].id = i + 1;
-  }
 
-  for (let i = 0; i < this.playerCpu.cards.length; i++) {
-    this.playerCpu.cards[i].id = i + 1;
-  }
-}*/
 restartGame() {
   // Reiniciar el juego
   this.listCards = cards;

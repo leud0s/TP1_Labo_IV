@@ -39,7 +39,17 @@
 .card-container app-card:first-child, .card-container-cpu app-card:first-child {
     margin-left: 0;
 }
-
+.lost-cards{
+    position: absolute;
+    top: 0;
+    right: 0;
+    display: flex;
+    background-color: #42ca59;
+    filter: grayscale(5);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-row: 1fr;
+}
 
 .player-name{
     color: #428bca;
