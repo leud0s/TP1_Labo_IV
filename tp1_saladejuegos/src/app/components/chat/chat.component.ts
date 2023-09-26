@@ -25,13 +25,13 @@ export class ChatComponent implements OnInit {
       setTimeout(()=>{
         console.log(loadMessages);
         this.messages = loadMessages;
-        this.elemento.scrollTop = this.elemento.scrollHeight;
+        //this.elemento.scrollTop = this.elemento.scrollHeight;
       },20)
     });
   }
 
   ngOnInit(): void {
-    this.elemento = document.getElementById("container-messages");
+    //this.elemento = document.getElementById("container-messages");
     this.router.queryParams.subscribe(params => {
       this.userName = params['name'];
     });
