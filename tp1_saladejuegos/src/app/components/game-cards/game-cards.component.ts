@@ -63,7 +63,7 @@ export class GameCardsComponent implements OnInit{
   private getCards(card){
     return this.listCards.push(card);
   }
-  public onClick(playerCardIndex: number) {
+  /*public onClick(playerCardIndex: number) {
     if (this.isOnClickInProgress) {
       return;
   }
@@ -144,7 +144,7 @@ export class GameCardsComponent implements OnInit{
     if (this.playerOne.cards.length === 1 || this.playerCpu.cards.length === 1 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
         this.endGame();
       }
-}
+}*/
 private endGame() {
   this.isGameOver = true;
   if (this.playerOne.hp > this.playerCpu.hp) {
@@ -169,6 +169,140 @@ restartGame() {
   console.log(this.playerOne);
   //this.result = "Esperando selección...";
 }
+
+public onClick(playerCardIndex: number) {
+  if (this.isOnClickInProgress) {
+    return;
+  }
+
+  this.isOnClickInProgress = true;
+  this.isGameOver = false;
+
+  const computerCardIndex = this.getRandomCardIndex(this.playerCpu.cards);
+  const playerCard = this.playerOne.cards[playerCardIndex];
+  const computerCard = this.playerCpu.cards[computerCardIndex];
+
+  const { playerDamage, computerDamage } = this.calculateDamage(playerCard, computerCard);
+
+  this.updatePlayerHealth(playerDamage, computerDamage);
+
+  this.determineRoundResult(playerDamage, computerDamage);
+
+  this.handleEndOfRound(playerCardIndex, computerCardIndex);
+
+  this.isOnClickInProgress = false;
+
+  if (this.isGameEndConditionMet()) {
+    this.endGame();
+  }
+}
+
+private getRandomCardIndex(cards: any[]): number {
+  return Math.floor(Math.random() * cards.length);
+}
+
+private calculateDamage(playerCard: any, computerCard: any): { playerDamage: number, computerDamage: number } {
+  let playerDamage = playerCard.damage;
+  let computerDamage = computerCard.damage;
+
+  // Adjust damage based on card types
+  switch(playerCard.type){
+    case "Cura":
+      // Handle healing card logic
+      playerDamage = 0;
+      break;
+    case "Roba vida":
+      // Handle life steal card logic
+      break;
+    case "Defesa":
+      if(playerCard.type !== "Defensa"){
+        computerDamage -= playerDamage;
+        playerDamage = 0;
+      }
+      break;
+    case "Devolución":
+      computerDamage = playerDamage;
+      playerDamage = 0;
+      break;
+  }
+
+  switch(computerCard.type){
+    case "Cura":
+      // Handle healing card logic for the computer
+      computerDamage = 0;
+      break;
+    case "Roba vida":
+      // Handle life steal card logic for the computer
+      break;
+    case "Defesa":
+      if(playerCard.type !== "Defensa"){
+        playerDamage -= computerDamage;
+        computerDamage = 0;
+      }
+      break;
+    case "Devolución":
+      computerDamage = playerDamage;
+      playerDamage = 0;
+      break;
+  }
+
+  return { playerDamage, computerDamage };
+}
+
+private updatePlayerHealth(playerDamage: number, computerDamage: number) {
+  this.playerCpu.hp -= playerDamage;
+  this.playerOne.hp -= computerDamage;
+  //this.damage = computerDamage;
+  //this.damageCpu = playerDamage;
+  this.playerOne.hp = this.playerOne.hp < 0 ? 0 : this.playerOne.hp;
+  this.playerCpu.hp = this.playerCpu.hp < 0 ? 0 : this.playerCpu.hp;
+}
+
+private determineRoundResult(playerDamage: number, computerDamage: number) {
+  if (playerDamage > computerDamage) {
+    this.result = "¡Has ganado la ronda!";
+  } else if (computerDamage > playerDamage) {
+    this.result = "La máquina ha ganado la ronda.";
+  } else {
+    this.result = "La ronda terminó en empate.";
+  }
+}
+
+private handleEndOfRound(playerCardIndex: number, computerCardIndex: number) {
+  setTimeout(() => {
+       // Añadir las cartas perdidas a la lista de cartas perdidas
+       this.lostCards.push(this.playerOne.cards[playerCardIndex]);
+       this.lostCards.push(this.playerCpu.cards[computerCardIndex]);
+   
+       // Eliminar las cartas de los jugadores
+       this.playerOne.cards.splice(playerCardIndex, 1);
+       this.playerCpu.cards.splice(computerCardIndex, 1);
+   
+       // Actualizar las puntuaciones
+      
+   
+       // Verificar si se cumple la condición de fin de juego
+       if (this.isGameEndConditionMet()) {
+         this.endGame();
+       }
+   
+     }, 1700); // Espera 1.7 segundos para que termine la animación
+}
+
+private isGameEndConditionMet(): boolean {
+  // Verifica si el jugador uno o la CPU tienen menos de 1 punto de vida
+  const playerOneHasLowHealth = this.playerOne.hp < 1;
+  const playerCpuHasLowHealth = this.playerCpu.hp < 1;
+
+  // Verifica si solo queda una carta en la mano de alguno de los jugadores
+  const playerOneHasOneCardLeft = this.playerOne.cards.length === 1;
+  const playerCpuHasOneCardLeft = this.playerCpu.cards.length === 1;
+
+  // El juego termina si uno de los jugadores tiene menos de 1 punto de vida o tiene solo una carta
+  return playerOneHasLowHealth || playerCpuHasLowHealth || playerOneHasOneCardLeft || playerCpuHasOneCardLeft;
+}
+
+
 
 
 }
