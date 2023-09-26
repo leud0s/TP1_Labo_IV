@@ -7,14 +7,16 @@
     border: 1px solid #cccccc;
     background-color: #36081f;
 }
-
+.card{
+    background-color: #36081f;
+}
 .photo {
     width: 100%; 
     height: auto; 
     position: absolute; 
     top: 50%; 
     left: 50%; 
-    transform: translate(-47%, -50%); 
+    transform: translate(37%, 50%); 
 }
 .text-name,.game{
     color: #cccccc;
@@ -35,6 +37,7 @@ p{
     font-size: 1em;
 }
 .container-buttons{
+    margin-top: 40px;
     display: grid;
     grid-template-columns: repeat(5, 1fr);
     grid-template-rows: repeat(1, 1fr);

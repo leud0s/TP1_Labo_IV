@@ -1,16 +1,17 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {AngularFirestore} from '@angular/fire/compat/firestore';
+import {AngularFirestore, AngularFirestoreCollection} from '@angular/fire/compat/firestore';
 import { User } from '../models/user.model';
 import {getAuth, updateProfile} from "firebase/auth"; 
 import {Message} from '../models/message.model';
-import { Observable } from 'rxjs';
+import { Observable, map } from 'rxjs';
 import { QuerySnapshot } from 'firebase/firestore';
 @Injectable({
   providedIn: 'root'
 })
 export class FirebaseService {
-  
+  private itemsCollections: AngularFirestoreCollection<Message>;
+  public chats: Message[] = [];
   constructor(
     private auth: AngularFireAuth,
     private db: AngularFirestore
@@ -51,8 +52,17 @@ export class FirebaseService {
       date: message.date,
     })
   }
-  loadMessages(): Observable<any>{
-    return this.db.collection<Message>('messages').get();
+  loadMessages(){
+    this.itemsCollections = this.db.collection<Message>('messages', ref => ref.orderBy('date', 'desc').limit(25));
+    //this.itemsCollections = this.db.collection<any>('messages',ref => ref.orderBy('date','desc').limit(25)).get();
+    return this.itemsCollections.valueChanges().pipe(map((messages: Message[])=>{
+      this.chats = [];
+
+      for(let message of messages){
+        this.chats.unshift(message);
+      }
+      return this.chats;
+    }))
   }
   getUserLogged() {
     return this.auth.authState;

@@ -12,40 +12,48 @@ import { Message } from 'src/app/models/message.model';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  messages$: Observable<QuerySnapshot<Message>>;
+  //messages$: Observable<QuerySnapshot<Message>>;
   userIsLogged: any;
   showChat = false;
   userName: any;
   message = '';
   messages: Message[] = [];
+  elemento: any;
 
-  constructor(private auth: FirebaseService, private router: ActivatedRoute) {}
+  constructor(private auth: FirebaseService, private router: ActivatedRoute) {
+    this.auth.loadMessages().subscribe((loadMessages: Message[])=>{
+      setTimeout(()=>{
+        console.log(loadMessages);
+        this.messages = loadMessages;
+        this.elemento.scrollTop = this.elemento.scrollHeight;
+      },20)
+    });
+  }
 
   ngOnInit(): void {
+    this.elemento = document.getElementById("container-messages");
     this.router.queryParams.subscribe(params => {
       this.userName = params['name'];
     });
 
-    this.messages$ = this.auth.getUserLogged().pipe(
-      switchMap(user => {
-        this.userIsLogged = user;
-        return this.auth.loadMessages();
-      })
-    );
+   
 
-    this.messages$.subscribe(
+    /*this.messages$.subscribe(
       (querySnapshot) => {
+        
         this.messages = querySnapshot.docs.map(doc => ({
           uid: doc.data().uid,
           user: doc.data().user,
           text: doc.data().text,
           date: doc.data().date
-        }));
+        }
+        ));
+        
       },
       (error) => {
         console.error('Error obteniendo documentos: ', error);
       }
-    );
+    );*/
   }
 
   sendMessage(): void {
@@ -60,7 +68,8 @@ export class ChatComponent implements OnInit {
     this.auth.saveMessages(messageNew);
     this.messages.push(messageNew);
     setTimeout(()=>{
-      this.scrollToTheLastElementByClassName();
+      
+      //this.elemento.scrollTop = this.elemento.scrollHeight;
       this.message = "";
     },10);
     
@@ -70,12 +79,7 @@ export class ChatComponent implements OnInit {
     return message.uid === this.userIsLogged.uid ? 'send' : 'received';
   }
   scrollToTheLastElementByClassName(){
-    let elements = document.getElementsByClassName('msg');
-    let last: any = elements[(elements.length - 1)];
-    let toppos = last.offsetTop;
-    console.log(toppos);
-    
-    document.getElementById("container-messages").scrollTop = toppos;
+    this.elemento.scrollTop = this.elemento.scrollHeight;
   }  
 
 }

@@ -166,6 +166,7 @@ restartGame() {
   this.listCards = cards;
   this.playerOne = new Player(100, this.dealCards(6), "");
   this.playerCpu = new Player(100, this.dealCards(6), "");
+  console.log(this.playerOne);
   //this.result = "Esperando selección...";
 }
 
