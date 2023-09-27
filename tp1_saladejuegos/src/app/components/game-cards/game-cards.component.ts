@@ -26,8 +26,8 @@ export class GameCardsComponent implements OnInit{
   condition = false;
   damage = "";
   damageCpu = "";
-  lostCards=[];
-  cardCpu:any;
+  lostCards =[];
+
 
   constructor(public dialog: MatDialog,public router: Router){
    
@@ -94,7 +94,7 @@ export class GameCardsComponent implements OnInit{
     this.isGameOver = false;
 
     const computerCardIndex = this.getRandomCardIndex(this.playerCpu.cards);
-    this.cardCpu = computerCardIndex;
+    this.selectedCardIndex = computerCardIndex;
     const playerCard = this.playerOne.cards[playerCardIndex];
     const computerCard = this.playerCpu.cards[computerCardIndex];
     console.log(this.playerCpu);
@@ -202,7 +202,9 @@ private determineRoundResult(playerDamage: number, computerDamage: number) {
 }
 
 private handleEndOfRound(playerCardIndex: number, computerCardIndex: number) {
+  this.condition = true;
   setTimeout(() => {
+      this.condition = false;
 
        this.lostCards.push(this.playerOne.cards[playerCardIndex]);
        this.lostCards.push(this.playerCpu.cards[computerCardIndex]);
@@ -229,7 +231,9 @@ private isGameOverCondition(): boolean {
   return playerOneHasLowHealth || playerCpuHasLowHealth || playerOneHasOneCardLeft || playerCpuHasOneCardLeft;
 }
 public deletedCard(index: number){
-  console.log(this.lostCards[1]);
-  return this.lostCards[1].i === index;
+  if(this.condition){
+    return this.selectedCardIndex === index;
+  }
+  return false;
 }
 }
