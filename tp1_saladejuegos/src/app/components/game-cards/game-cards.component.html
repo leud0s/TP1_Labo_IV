@@ -12,12 +12,12 @@
     </div>
     <div class="container-players">
         <div id="player" class="container-player">
-            <h2 class="player-name">Jugador</h2>
+            <h2 class="player-name">Jugador <span class="damage">Daño recibido {{damage}}</span> </h2>
             <div class="progress">
                 <div class="progress-bar" id="hp-bar" [ngStyle]="{'width.%': playerOne.hp}">
                     <span class="progress-bar-text" id="hp-number">{{playerOne.hp}}HP</span>
                 </div>
-            </div> <span class="damage">Daño recibido {{damage}}</span>        
+            </div>        
         </div>
         <div id="player-cards" class="card-container">
             <app-card  *ngFor="let item of playerOne.cards, let i = index" 
@@ -47,21 +47,21 @@
 
 
     <div id="computer" class="container-cpu">
-            <h2 class="cpu-name">CPU</h2>
+            <h2 class="cpu-name">CPU <span class="damage">Daño recibido {{damageCpu}}</span></h2>
             <div class="progress">
                 <div class="progress-bar cpu-bar" id="hp-bar-cpu" [ngStyle]="{'width.%': playerCpu.hp}">
                     <span class="progress-bar-text" id="hp-number-cpu">{{playerCpu.hp}}HP</span>
                 </div>
-            </div> <span class="damage">Daño recibido {{damageCpu}}</span> 
+            </div>  
         </div>
         <div id="player-cards" class="card-container-cpu">
-            <app-card *ngFor="let item of playerCpu.cards" 
+            <app-card *ngFor="let item of playerCpu.cards, let i = index" 
                 [type]="item.type"
                 [img]="item.img"
                 [name]="item.name"
                 [detail]="item.detail"
-                [damage]="item.damage">
-                
+                [damage]="item.damage"
+                [ngClass]="{'slide-out-blurred-tl': deletedCard(i)}">
             </app-card>
         </div>
     </div>

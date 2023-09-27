@@ -22,24 +22,25 @@
     margin-bottom: 40px;
     height: 250px;
 }
+
 .card-container app-card, .card-container-cpu app-card {
     margin-left: -30px;
     transition: margin-left 0.5s ease, transform 0.5s ease;
     transform-origin: bottom center;
-    position: relative; /* Añade posición relativa */
+    position: relative;
     z-index: 1;
 }
 
 .card-container app-card:hover, .card-container-cpu app-card:hover {
     margin-left: -40px;
     transform: translateY(-40px) rotateX(-10deg);
-    z-index: 10; /* Ajusta el nivel de elevación */
+    z-index: 10;
 }
 
 .card-container app-card:first-child, .card-container-cpu app-card:first-child {
     margin-left: 0;
 }
-.lost-cards{
+.lost-cards {
     position: absolute;
     top: 0;
     right: 0;
@@ -48,9 +49,9 @@
     filter: grayscale(5);
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-row: 1fr;
-}
-
+    grid-auto-rows: minmax(0, 1fr); /* Controla la altura de las filas adicionales */
+    overflow: hidden; 
+  }
 .player-name{
     color: #428bca;
 }
@@ -95,14 +96,17 @@
     transform-origin: center center; 
     z-index: 99;
   }
-/*.card-container-cpu app-card.ng-leave {
-    transition: opacity 0.5s, transform 0.5s;
-}*/
 
 .disabled {
     pointer-events: none;  /* Deshabilita eventos de puntero (como clics) en elementos deshabilitados */
     opacity: 0.5;  /* Puedes reducir la opacidad para indicar visualmente que está deshabilitado */
-  }
+}
+.slide-out-blurred-tl{-webkit-animation:slide-out-blurred-tl 1.6s cubic-bezier(.755,.05,.855,.06) both;animation:slide-out-blurred-tl 1.6s cubic-bezier(.755,.05,.855,.06) both}
+ /* ----------------------------------------------
+ Card CPU
+ * ---------------------------------------------- */
+
+@-webkit-keyframes slide-out-blurred-tl{0%{-webkit-transform:translate(0,0) skew(0deg,0deg);transform:translate(0,0) skew(0deg,0deg);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-filter:blur(0);filter:blur(0);opacity:1}100%{-webkit-transform:translate(-1000px,-1000px) skew(80deg,10deg);transform:translate(-1000px,-1000px) skew(80deg,10deg);-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-filter:blur(40px);filter:blur(40px);opacity:0}}@keyframes slide-out-blurred-tl{0%{-webkit-transform:translate(0,0) skew(0deg,0deg);transform:translate(0,0) skew(0deg,0deg);-webkit-transform-origin:50% 50%;transform-origin:50% 50%;-webkit-filter:blur(0);filter:blur(0);opacity:1}100%{-webkit-transform:translate(-1000px,-1000px) skew(80deg,10deg);transform:translate(-1000px,-1000px) skew(80deg,10deg);-webkit-transform-origin:100% 0;transform-origin:100% 0;-webkit-filter:blur(40px);filter:blur(40px);opacity:0}}
 @media (min-width:1025px) { 
     .container-player{
         position: absolute;
@@ -125,6 +129,7 @@
         position: absolute;
         left: 0;
         top: 0;
+        padding: 10px;
     }
     .container-cpu{
         position: absolute;

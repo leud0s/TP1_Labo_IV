@@ -7,13 +7,15 @@
       CHAT
       <button type="button" class="btn-close" aria-label="Close" (click)="showChat=false"></button>
   </div>
-  <div class="card-body" id="card-body">
-    <div id="container-messages" class="container-messages h-100 msg">
-      <div *ngFor="let message of messages" class="p-2 mb-2" [ngClass]="determineMessageClass(message)">
-        <p class="user-name">{{message.user}}</p>
-        <p class="text">{{message.text}}</p>
-        <p class="user-date">{{message.date}}</p>
-      </div>
+  <div  class="card-body" id="card-body">
+    <div id="container-messages" class="container-messages h-100">
+      <p id="msg" *ngFor="let message of messages" class="p-2 mb-2 msg" [ngClass]="determineMessageClass(message)">
+        <span class="user-name">{{message.user}}</span>
+        <br>
+        <span class="text">{{message.text}}</span>
+        <br>
+        <span class="user-date">{{message.date}}</span>
+      </p>
     </div>
     <span id="final"></span>
   </div>

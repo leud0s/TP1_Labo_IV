@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
 import { Observable } from 'rxjs';
 import { switchMap } from 'rxjs/operators';
 import { QuerySnapshot } from 'firebase/firestore';
@@ -12,48 +12,40 @@ import { Message } from 'src/app/models/message.model';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  //messages$: Observable<QuerySnapshot<Message>>;
+  messages$: Observable<QuerySnapshot<Message>>;
   userIsLogged: any;
   showChat = false;
   userName: any;
   message = '';
   messages: Message[] = [];
-  elemento: any;
-
-  constructor(private auth: FirebaseService, private router: ActivatedRoute) {
-    this.auth.loadMessages().subscribe((loadMessages: Message[])=>{
-      setTimeout(()=>{
-        console.log(loadMessages);
-        this.messages = loadMessages;
-        //this.elemento.scrollTop = this.elemento.scrollHeight;
-      },20)
-    });
-  }
+  @ViewChild('container-messages') private messageContainer: ElementRef;
+  constructor(private auth: FirebaseService, private router: ActivatedRoute) {}
 
   ngOnInit(): void {
-    //this.elemento = document.getElementById("container-messages");
     this.router.queryParams.subscribe(params => {
       this.userName = params['name'];
     });
 
-   
+    this.messages$ = this.auth.getUserLogged().pipe(
+      switchMap(user => {
+        this.userIsLogged = user
+        return this.auth.loadMessages();
+      })
+    );
 
-    /*this.messages$.subscribe(
+    this.messages$.subscribe(
       (querySnapshot) => {
-        
         this.messages = querySnapshot.docs.map(doc => ({
           uid: doc.data().uid,
           user: doc.data().user,
           text: doc.data().text,
           date: doc.data().date
-        }
-        ));
-        
+        }));
       },
       (error) => {
         console.error('Error obteniendo documentos: ', error);
       }
-    );*/
+    );
   }
 
   sendMessage(): void {
@@ -68,8 +60,8 @@ export class ChatComponent implements OnInit {
     this.auth.saveMessages(messageNew);
     this.messages.push(messageNew);
     setTimeout(()=>{
-      
-      //this.elemento.scrollTop = this.elemento.scrollHeight;
+      this.scrollToBottom();
+      this.scrollToTheLastElementByClassName();
       this.message = "";
     },10);
     
@@ -79,7 +71,21 @@ export class ChatComponent implements OnInit {
     return message.uid === this.userIsLogged.uid ? 'send' : 'received';
   }
   scrollToTheLastElementByClassName(){
-    this.elemento.scrollTop = this.elemento.scrollHeight;
+    let elements = document.getElementsByClassName('msg');
+    let last: any = elements[(elements.length - 1)];
+    let toppos = last.offsetTop;
+    console.log(toppos);
+    
+    
+    document.getElementById("container-messages").scrollTop = toppos;
   }  
+  scrollToBottom() {
+    const containerMessages = document.getElementById("container-messages");
+    if (containerMessages) {
+      const toppos = containerMessages.scrollHeight;
+      console.log(toppos);
+      containerMessages.scrollTop = toppos;
+    }
+  }
 
 }

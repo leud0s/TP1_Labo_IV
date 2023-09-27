@@ -27,13 +27,13 @@ export class GameCardsComponent implements OnInit{
   damage = "";
   damageCpu = "";
   lostCards=[];
+  cardCpu:any;
 
   constructor(public dialog: MatDialog,public router: Router){
    
   }
   ngOnInit(): void {
-    console.log(this.playerOne);
-    console.log(this.playerCpu);
+   
   }
   private dealCards(numCards: number) {
     const dealCards = [];
@@ -77,21 +77,27 @@ export class GameCardsComponent implements OnInit{
     this.listCards = cards;
     this.playerOne = new Player(100, this.dealCards(5), "");
     this.playerCpu = new Player(100, this.dealCards(5), "");
-    console.log(this.playerOne);
+    setTimeout(()=>{
+      this.lostCards=[];
+      this.result = "Esperando selección...";
+    },2500);
   }
 
   public onClick(playerCardIndex: number) {
     if (this.isOnClickInProgress) {
       return;
     }
-
+    setTimeout(()=>{
+      this.lostCards=[];
+    },500);
     this.isOnClickInProgress = true;
     this.isGameOver = false;
 
     const computerCardIndex = this.getRandomCardIndex(this.playerCpu.cards);
+    this.cardCpu = computerCardIndex;
     const playerCard = this.playerOne.cards[playerCardIndex];
     const computerCard = this.playerCpu.cards[computerCardIndex];
-
+    console.log(this.playerCpu);
     const { playerDamage, computerDamage } = this.calculateDamage(playerCard, computerCard);
 
     this.updatePlayerHealth(playerDamage, computerDamage);
@@ -101,7 +107,7 @@ export class GameCardsComponent implements OnInit{
     this.handleEndOfRound(playerCardIndex, computerCardIndex);
 
     this.isOnClickInProgress = false;
-    if (this.isGameEndConditionMet()) {
+    if (this.isGameOverCondition()) {
       this.endGame();
     }
   }
@@ -134,8 +140,10 @@ export class GameCardsComponent implements OnInit{
       }
       break;
     case "Devolución":
-      playerDamage = computerDamage;
-      computerDamage = 0;
+      if(computerCard.type !== "Defensa"){
+        playerDamage = computerDamage;
+        computerDamage = 0;
+      }
       break;
     case "Colateral":
       this.playerOne.hp -= 10;
@@ -161,8 +169,10 @@ export class GameCardsComponent implements OnInit{
       }
       break;
     case "Devolución":
-      computerDamage = playerDamage;
-      playerDamage = 0;
+      if(playerCard.type !== "Defensa"){
+        computerDamage = playerDamage;
+        playerDamage = 0;
+      }
       break;
     case "Colateral":
       this.playerCpu.hp -= 10;
@@ -199,14 +209,14 @@ private handleEndOfRound(playerCardIndex: number, computerCardIndex: number) {
        
        this.playerOne.cards.splice(playerCardIndex, 1);
        this.playerCpu.cards.splice(computerCardIndex, 1);
-       if (this.isGameEndConditionMet()) {
+       if (this.isGameOverCondition()) {
          this.endGame();
        }
    
      }, 1700); 
 }
 
-private isGameEndConditionMet(): boolean {
+private isGameOverCondition(): boolean {
   // Verifica si el jugador uno o la CPU tienen menos de 1 punto de vida
   const playerOneHasLowHealth = this.playerOne.hp < 1;
   const playerCpuHasLowHealth = this.playerCpu.hp < 1;
@@ -218,86 +228,8 @@ private isGameEndConditionMet(): boolean {
   // El juego termina si uno de los jugadores tiene menos de 1 punto de vida o tiene solo una carta
   return playerOneHasLowHealth || playerCpuHasLowHealth || playerOneHasOneCardLeft || playerCpuHasOneCardLeft;
 }
- /*public onClick(playerCardIndex: number) {
-    if (this.isOnClickInProgress) {
-      return;
-  }
-  this.isOnClickInProgress = true;
-  this.isGameOver = false;
-    const computerCardIndex = Math.floor(Math.random() * this.playerCpu.cards.length);
-
-    const playerCard = this.playerOne.cards[playerCardIndex];
-    const computerCard = this.playerCpu.cards[computerCardIndex];
-
-    let playerDamage = playerCard.damage;
-    let computerDamage = computerCard.damage;
-    switch(playerCard.type){
-      case "Cura":
-        this.playerOne.hp += playerDamage;
-        if(this.playerOne.hp >= 100)
-          { this.playerOne.hp = 100;}
-        playerDamage = 0;
-        break;
-      case "Roba vida":
-        this.playerOne.hp += playerDamage;
-        break;
-      case "Defesa":
-        if(playerCard.type !== "Defensa"){
-          computerDamage -= playerDamage;
-          playerDamage = 0;
-        }
-        break;
-      case "Devolución":
-          computerDamage = playerDamage;
-          playerDamage = 0;
-        break;
-    }
-    switch(computerCard.type){
-      case "Cura":
-        this.playerCpu.hp += computerDamage;
-        if(this.playerCpu.hp >= 100) this.playerCpu.hp = 100;
-        computerDamage = 0;
-        break;
-      case "Roba vida":
-        this.playerCpu.hp += computerDamage;
-        break;
-      case "Defesa":
-          if(playerCard.type !== "Defensa"){
-            playerDamage -= computerDamage;
-            computerDamage = 0;
-          }
-        break;
-      case "Devolución":
-          computerDamage = playerDamage;
-          playerDamage = 0;
-        break;
-    }
-    this.playerCpu.hp -= playerDamage;
-    this.playerOne.hp -= computerDamage;
-    this.damage = computerDamage;
-    this.damageCpu = playerDamage;
-    this.playerOne.hp = this.playerOne.hp < 0 ? 0 : this.playerOne.hp;
-    this.playerCpu.hp = this.playerCpu.hp < 0 ? 0 : this.playerCpu.hp;
-   
-    if (playerDamage > computerDamage) {
-      this.result = "¡Has ganado la ronda!";
-    } else if (computerDamage > playerDamage) {
-      this.result = "La máquina ha ganado la ronda.";
-    } else {
-      this.result = "La ronda terminó en empate.";
-    }
-    
-    setTimeout(() => {
-      this.lostCards.push(this.playerOne.cards[playerCardIndex]);
-      this.lostCards.push(this.playerOne.cards[computerCardIndex]);
-      this.playerOne.cards.splice(playerCardIndex, 1);
-      this.playerCpu.cards.splice(computerCardIndex, 1);
-        //this.updateCardIds();
-    }, 1700); // Espera 1 segundo para que termine la animación
-    this.isOnClickInProgress = false;
-    
-    if (this.playerOne.cards.length === 1 || this.playerCpu.cards.length === 1 || this.playerOne.hp <= 0 || this.playerCpu.hp <= 0) {
-        this.endGame();
-      }
-}*/
+public deletedCard(index: number){
+  console.log(this.lostCards[1]);
+  return this.lostCards[1].i === index;
+}
 }

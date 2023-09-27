@@ -60,7 +60,7 @@ p{
   padding: 0.3rem;
 }
 .container-messages::--webkit-scrollbar{
-  -webkit-appearance: none;
+  display: none;
 }
 .chat-icon-container{
   position: fixed;

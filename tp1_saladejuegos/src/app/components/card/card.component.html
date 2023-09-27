@@ -1,4 +1,4 @@
-<div  class="card" [ngClass]="{'slide-out-blurred-br': isClicked}" (click)="onClick()">
+<div  class="card" [ngClass]="{'slide-out-blurred-br': isClicked, 'slide-out-blurred-tl': false}" (click)="onClick()">
     <div class="ribbon" 
         [ngClass]="{'green': type === 'Ataque',
         'blue': type === 'Cura',
