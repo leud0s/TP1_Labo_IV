@@ -4,6 +4,7 @@ import { Player } from 'src/app/models/player.model';
 import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { Router } from '@angular/router';
+import { GameCardsService } from 'src/app/services/game-cards.service';
 
 @Component({
   selector: 'app-game-cards',
@@ -17,8 +18,8 @@ export class GameCardsComponent implements OnInit{
   result = "Esperando selección...";
   playerHP = 100;
   cpuHP = 100;
-  playerOne = new Player(100, this.dealCards(5), "");
-  playerCpu = new Player(100, this.dealCards(5), "");
+  playerOne = new Player(100, this.gameService.dealCards(5), "");
+  playerCpu = new Player(100, this.gameService.dealCards(5), "");
   points = 0;
   isGameOver: boolean = false;
   isOnClickInProgress: boolean = false;
@@ -29,7 +30,7 @@ export class GameCardsComponent implements OnInit{
   lostCards =[];
 
 
-  constructor(public dialog: MatDialog,public router: Router){
+  constructor(public dialog: MatDialog,public router: Router, private gameService: GameCardsService){
    
   }
   ngOnInit(): void {
@@ -75,8 +76,8 @@ export class GameCardsComponent implements OnInit{
   restartGame() {
     // Reiniciar el juego
     this.listCards = cards;
-    this.playerOne = new Player(100, this.dealCards(5), "");
-    this.playerCpu = new Player(100, this.dealCards(5), "");
+    this.playerOne = new Player(100, this.gameService.dealCards(5), "");
+    this.playerCpu = new Player(100, this.gameService.dealCards(5), "");
     setTimeout(()=>{
       this.lostCards=[];
       this.result = "Esperando selección...";
@@ -136,6 +137,7 @@ export class GameCardsComponent implements OnInit{
         playerDamage = 0;
       }else{
         computerDamage -= playerDamage;
+        if(computerDamage < 0){computerDamage = 0;}
         playerDamage = 0;
       }
       break;
@@ -165,6 +167,7 @@ export class GameCardsComponent implements OnInit{
         computerDamage = 0;
       }else{
         playerDamage -= computerDamage;
+        if(playerDamage < 0){playerDamage = 0;}
         computerDamage = 0;
       }
       break;
