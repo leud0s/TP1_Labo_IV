@@ -105,4 +105,10 @@ export class HangmanService {
   obtenerPalabraSeleccionada(): string {
     return this.palabras[Math.floor(Math.random() * this.palabras.length)];
   }
+  reiniciarJuego(): void {
+    // Reinicia las variables del juego para comenzar una nueva partida
+    this.letrasAdivinadas = [];
+    this.intentosRestantes = 6;
+    this.palabraSeleccionada = this.obtenerPalabraSeleccionada();
+  }
 }

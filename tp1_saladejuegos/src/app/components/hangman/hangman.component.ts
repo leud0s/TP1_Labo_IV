@@ -9,7 +9,7 @@ const MAX_ERRORS = 6;
 })
 
 export class HangmanComponent {
-  palabraMostrada: string;
+  palabraMostrada: string = this.ahorcadoService.obtenerPalabraMostrada();
   intentosRestantes: number;
   gameOver: boolean = false;
   abecedario = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
@@ -20,9 +20,9 @@ export class HangmanComponent {
   }
 
   resetGame(): void {
-    this.palabraMostrada = this.ahorcadoService.obtenerPalabraMostrada();
-    this.intentosRestantes = MAX_ERRORS;
-    //this.gameOver = false;
+    this.gameOver = false;
+    this.ahorcadoService.reiniciarJuego();
+    this.intentosRestantes = 6;
   }
 
   adivinarLetra(letra: string): void {
