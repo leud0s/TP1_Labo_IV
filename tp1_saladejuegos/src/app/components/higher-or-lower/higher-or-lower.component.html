@@ -1,1 +1,7 @@
-<p>higher-or-lower works!</p>
+<div class="container-fluid center">
+    <img id="card-image" class="card-image" [src]="cardImage" alt="Card Image">
+    <div class="container-buttons">
+      <button id="higher-button" (click)="compareCards('higher')">Mayor</button>
+      <button id="lower-button" (click)="compareCards('lower')">Menor</button>
+    </div>
+  </div>
