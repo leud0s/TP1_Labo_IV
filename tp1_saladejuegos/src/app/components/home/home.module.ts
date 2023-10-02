@@ -12,6 +12,7 @@ import {ChatComponent} from '../chat/chat.component';
 import { FormsModule } from '@angular/forms';
 import { EndGameComponent } from '../end-game/end-game.component';
 import { HangmanComponent } from '../hangman/hangman.component';
+import { HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { HangmanComponent } from '../hangman/hangman.component';
     MatButtonModule, 
     MatIconModule,
     MatDialogModule,
-    FormsModule
+    FormsModule,
+    HttpClient
       // Agrega el módulo de enrutamiento a los imports
   ]
 })

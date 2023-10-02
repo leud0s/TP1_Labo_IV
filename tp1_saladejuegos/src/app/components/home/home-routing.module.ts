@@ -6,6 +6,8 @@ import { ChatComponent } from '../chat/chat.component';
 import { HangmanComponent } from '../hangman/hangman.component';
 import { HigherOrLowerComponent } from '../higher-or-lower/higher-or-lower.component';
 import { TriviaComponent } from '../trivia/trivia.component';
+
+
 const homeRoutes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'game', component: GameCardsComponent },  // Ruta para el componente de juego
