@@ -13,14 +13,14 @@ export class ResultsService {
 
   constructor(private firestore:AngularFirestore,private ruteo : Router) { }
 
-  guardarResultado(nuevaResultado:Results){
+  saveResults(nuevaResultado:Results){
     this.firestore.collection('resultados').add(nuevaResultado);
     setTimeout(() => {
       this.ruteo.navigateByUrl('/home')      
     }, 1000);
   }
 
-  traerTodosLosResultados(){
+  getAllResults(){
     this.itemsCollection = this.firestore.collection<Results>('resultados');
     return this.todasLosResultados = this.itemsCollection.valueChanges();
   } 

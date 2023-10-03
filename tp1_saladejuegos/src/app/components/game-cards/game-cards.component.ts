@@ -5,6 +5,10 @@ import {MatDialog, MatDialogModule} from '@angular/material/dialog';
 import {MatButtonModule} from '@angular/material/button';
 import { Router } from '@angular/router';
 import { GameCardsService } from 'src/app/services/game-cards.service';
+import Swal from 'sweetalert2';
+import { Results } from 'src/app/models/results.model';
+import { ResultsService } from 'src/app/services/results.service';
+import { FirebaseService } from 'src/app/services/firebase.service';
 
 @Component({
   selector: 'app-game-cards',
@@ -28,13 +32,21 @@ export class GameCardsComponent implements OnInit{
   damage = "";
   damageCpu = "";
   lostCards =[];
+  usuario : any;
+  resultGame !: Results;
+  times : number = 0;
 
 
-  constructor(public dialog: MatDialog,public router: Router, private gameService: GameCardsService){
+  constructor(private resServ : ResultsService,private auth : FirebaseService, private gameService: GameCardsService){
    
   }
   ngOnInit(): void {
-   
+    this.auth.getUserLogged().subscribe(
+      user=>{
+        console.log(user);
+        this.usuario = user;
+      }
+    )
   }
   private dealCards(numCards: number) {
     const dealCards = [];
@@ -60,14 +72,50 @@ export class GameCardsComponent implements OnInit{
   private endGame() {
     this.isGameOver = true;
     if (this.playerOne.hp > this.playerCpu.hp) {
-      this.result = "¡Has ganado el juego!";
-      this.points += 5;
+      Swal.fire({
+        title: '¡Has ganado el juego!\nTu puntaje es '+ (this.points+=5)+'\nQuerés seguir jugando?',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Si',
+        cancelButtonColor: '#d33',
+        showCancelButton: true,
+        cancelButtonText: 'No',
+        background: 'red'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+          this.saveResults();
+        }
+      });
     } else if (this.playerOne.hp === this.playerCpu.hp) {
-      this.result = "La ronda terminó en empate.";
-      this.points += 3;
+      Swal.fire({
+        title: 'La partida terminó en empate.\nTu puntaje es '+ (this.points+=3)+'\nQuerés seguir jugando?',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Si',
+        cancelButtonColor: '#d33',
+        showCancelButton: true,
+        cancelButtonText: 'No',
+        background: 'red'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+          this.saveResults();
+        }
+      });
     } else {
-      this.result = "La máquina ha ganado el juego.";
-      this.points -= 2;
+      Swal.fire({
+        title: 'La máquina ha ganado el juego..\nTu puntaje es '+ (this.points-=2)+'\nQuerés seguir jugando?',
+        icon: 'warning',
+        confirmButtonColor: '#3085d6',
+        confirmButtonText: 'Si',
+        cancelButtonColor: '#d33',
+        showCancelButton: true,
+        cancelButtonText: 'No',
+        background: 'red'
+      }).then((result) => {
+        if (!result.isConfirmed) {
+          this.saveResults();
+        }
+      });
       if(this.points < 0) this.points = 0;
     }
     this.restartGame();
@@ -75,6 +123,7 @@ export class GameCardsComponent implements OnInit{
 
   restartGame() {
     // Reiniciar el juego
+    this.times +=1;
     this.listCards = cards;
     this.playerOne = new Player(100, this.gameService.dealCards(5), "");
     this.playerCpu = new Player(100, this.gameService.dealCards(5), "");
@@ -238,5 +287,18 @@ public deletedCard(index: number){
     return this.selectedCardIndex === index;
   }
   return false;
+}
+saveResults(){
+  let date = new Date();
+  let dateString = date.toString();
+  this.resultGame = {
+    uid: this.usuario.uid,
+    mail: this.usuario.email,
+    fecha: dateString,
+    juego: 'BattleCards',
+    aciertos: this.points,
+    intentos: this.times
+  }
+  this.resServ.saveResults(this.resultGame);
 }
 }

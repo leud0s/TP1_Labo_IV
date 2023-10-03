@@ -24,6 +24,7 @@ export class HangmanComponent {
   times : number = 0;
   usuario : any;
   resultGame !: Results;
+  
   constructor(private resServ : ResultsService,private auth : FirebaseService) {
     this.auth.getUserLogged().subscribe(
       user=>{
@@ -131,7 +132,7 @@ export class HangmanComponent {
       aciertos: this.successes,
       intentos: this.times
     }
-    this.resServ.guardarResultado(this.resultGame);
+    this.resServ.saveResults(this.resultGame);
   }
   
 }

@@ -17,6 +17,7 @@ export class HigherOrLowerComponent {
   successes : number = 0;
   times : number = 0;
   user: any;
+  
   constructor(private resServ : ResultsService, private auth: FirebaseService) {
     this.cardImage = '';
     this.currentCardValue = this.getRandomCardValue();
@@ -96,6 +97,6 @@ export class HigherOrLowerComponent {
       aciertos: this.successes,
       intentos: this.times
     }
-    this.resServ.guardarResultado(this.resultGame);
+    this.resServ.saveResults(this.resultGame);
   }
 }
