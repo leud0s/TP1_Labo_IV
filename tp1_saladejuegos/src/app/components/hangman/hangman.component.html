@@ -1,23 +1,39 @@
 <div class="container-fluid">
-  <h1 class="title">Juego del Ahorcado</h1>
-  <p>Palabra a adivinar: {{ palabraMostrada }}</p>
-  <p>Intentos restantes: {{ intentosRestantes }}</p>
+  <div class="container" style="height: 100vh;">
 
-  <div>
-    <button *ngFor="let letra of abecedario" class="btn btn-success" (click)="adivinarLetra(letra)" [disabled]="palabraMostrada.includes(letra.toLowerCase())">
-      {{ letra }}
-    </button>
-  </div>
-
-  <div *ngIf="gameOver">
-    <app-end-game [restart]="gameOver"></app-end-game>
-
-    <div *ngIf="intentosRestantes === 0">
-      <p>¡Perdiste! La palabra era: {{ ahorcadoService.obtenerPalabraSeleccionada() }}</p>
-    </div>
-
-    <div *ngIf="!palabraMostrada.includes('_')">
-      <p>¡Ganaste! Has adivinado la palabra.</p>
-    </div>
+      <div class="d-flex justify-content-center align-items-center">
+          <div class="container">
+              <div class="row justify-content-center mt-4">
+                  <h1 class="text-center">Ahorcado</h1>
+              </div>
+              <div class="container-fluid mt-4" style="height: 20vh;">
+                  <h3 class="row justify-content-center" style="font-size: xxx-large;">
+                      {{ this.codedWorld }}
+                  </h3>
+              </div>
+              <div class="row justify-content-center d-flex">
+                  <div class="col-sm-4">
+                      <a class="m-1" id="{{ letter }}" *ngFor="let letter of letters" mat-flat-button color="primary" (click)="verifyLetter(letter)">{{ letter }}</a>
+                  </div>
+              </div>
+              <div class="row justify-content-center d-flex mt-2">                    
+                  <p style="font-size:large;"> Cantidad de intentos: <strong>{{ this.maxErrors }}</strong></p>
+              </div>
+              <div *ngIf="lettersUsed.length > 0">
+                  <p style="font-size:medium;" class="text-center">Letras usadas</p>
+                  <div class="row justify-content-center d-flex mt-4" *ngIf="lettersUsed.length > 0">
+                    <div class="col-sm-4">
+                        <a class="m-1" *ngFor="let letter of lettersUsed" mat-flat-button color="accent">{{ letter }}</a>                    
+                    </div>
+                  </div>
+              </div>
+              <div>
+                  <a class="back" data-toggle="tooltip" data-placement="bottom" title="Volver" routerLink='/home'>
+                      <img src="../../../assets/atras.png" alt="flecha-volver" class="row-back">
+                  </a>
+              </div>
+              
+          </div>
+      </div>
   </div>
 </div>
