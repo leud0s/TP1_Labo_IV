@@ -68,8 +68,12 @@ export class HigherOrLowerComponent {
     } else {
       this.points -=2;
       Swal.fire({
-        title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor')+'.\nQuerés seguir jugando?',
+        title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor'),
+        text: 'Querés seguir jugando?',
         icon: 'error',
+        /*imageUrl: 'https://i.gifer.com/7efs.gif',
+        imageWidth: 100,
+        imageHeight: 100, */
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Si',
         cancelButtonColor: '#d33',
