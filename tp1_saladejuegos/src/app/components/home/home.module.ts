@@ -12,13 +12,14 @@ import {ChatComponent} from '../chat/chat.component';
 import { FormsModule } from '@angular/forms';
 import { HangmanComponent } from '../hangman/hangman.component';
 
+
 @NgModule({
   declarations: [
     HomeComponent,
     GameCardsComponent,
     CardComponent,
     ChatComponent,
-    HangmanComponent
+    HangmanComponent,
   ],
   imports: [
     CommonModule,
@@ -27,6 +28,7 @@ import { HangmanComponent } from '../hangman/hangman.component';
     MatIconModule,
     MatDialogModule,
     FormsModule,
+    
       // Agrega el módulo de enrutamiento a los imports
   ]
 })

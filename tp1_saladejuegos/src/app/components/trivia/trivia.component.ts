@@ -15,6 +15,7 @@ export class TriviaComponent {
 
   ngOnInit() {
     this.getRandomPokemon();
+    console.log(this.getRandomPokemon());
   }
 
   getRandomPokemon() {

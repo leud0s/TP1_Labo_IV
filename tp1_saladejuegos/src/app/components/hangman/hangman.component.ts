@@ -79,14 +79,16 @@ export class HangmanComponent {
   loser(){
     this.times++;
     Swal.fire({
-      title: 'Perdiste, la palabra era: '+this.worldRandom+'.\nQuerés seguir jugando?',
-      icon: 'warning',
+      title: 'Perdiste, la palabra era: '+this.worldRandom+'\n <hr>',
+      text: 'Querés seguir jugando?',
+      icon: 'error',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Si',
       cancelButtonColor: '#d33',
       showCancelButton: true,
       cancelButtonText: 'No',
-      background: 'red'
+      background: '#7c1ca4',
+      color: '#fff'
     }).then((result) => {
       if (!result.isConfirmed) {
         this.saveResults();
@@ -102,13 +104,16 @@ export class HangmanComponent {
     this.times++;
     this.points++;
     Swal.fire({
-      title: 'Ganaste!!\nQuerés seguir jugando?',
+      title: 'Ganaste!! La palabra era: '+this.worldRandom+'\n <hr>',
+      text: 'Querés seguir jugando?',
       icon: 'success',
       confirmButtonColor: '#3085d6',
       confirmButtonText: 'Si',
       cancelButtonColor: '#d33',      
       showCancelButton: true,
-      cancelButtonText: 'No'
+      cancelButtonText: 'No',
+      background: '#7c1ca4',
+      color: '#fff'
     }).then((result) => {
       if (!result.isConfirmed) {
         this.saveResults();

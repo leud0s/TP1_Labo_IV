@@ -12,7 +12,7 @@
                   </h3>
               </div>
               <div class="row justify-content-center d-flex">
-                  <div class="col-sm-4">
+                  <div class="col-sm-6">
                       <a class="m-1" id="{{ letter }}" *ngFor="let letter of letters" mat-flat-button color="primary" (click)="verifyLetter(letter)">{{ letter }}</a>
                   </div>
               </div>
@@ -22,7 +22,7 @@
               <div *ngIf="lettersUsed.length > 0">
                   <p style="font-size:medium;" class="text-center">Letras usadas</p>
                   <div class="row justify-content-center d-flex mt-4" *ngIf="lettersUsed.length > 0">
-                    <div class="col-sm-4">
+                    <div class="col-sm-6">
                         <a class="m-1" *ngFor="let letter of lettersUsed" mat-flat-button color="accent">{{ letter }}</a>                    
                     </div>
                   </div>

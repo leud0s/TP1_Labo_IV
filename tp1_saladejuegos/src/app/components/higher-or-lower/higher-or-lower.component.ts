@@ -3,6 +3,7 @@ import Swal from 'sweetalert2';
 import { ResultsService } from 'src/app/services/results.service';
 import { Results } from 'src/app/models/results.model';
 import { FirebaseService } from 'src/app/services/firebase.service';
+
 @Component({
   selector: 'app-higher-or-lower',
   templateUrl: './higher-or-lower.component.html',
@@ -17,6 +18,7 @@ export class HigherOrLowerComponent {
   points : number = 0;
   times : number = 0;
   user: any;
+  loading:boolean =false;
   
   constructor(private resServ : ResultsService, private auth: FirebaseService) {
     this.cardImage = '';
@@ -51,7 +53,8 @@ export class HigherOrLowerComponent {
         (choice === 'lower' && this.nextCardValue < this.currentCardValue)) {
           this.points +=5;
           Swal.fire({
-            title: '¡Correcto! La siguiente carta es ' + (choice === 'higher' ? 'mayor' : 'menor')+'.\nQuerés seguir jugando?',
+            title: '¡Correcto! La siguiente carta es ' + (choice === 'higher' ? 'mayor' : 'menor')+'.\n<hr>',
+            text: 'Querés seguir jugando?',
             icon: 'success',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Si',
@@ -68,7 +71,7 @@ export class HigherOrLowerComponent {
     } else {
       this.points -=2;
       Swal.fire({
-        title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor'),
+        title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor')+'\n<hr>',
         text: 'Querés seguir jugando?',
         icon: 'error',
         /*imageUrl: 'https://i.gifer.com/7efs.gif',

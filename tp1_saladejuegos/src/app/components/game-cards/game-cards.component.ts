@@ -73,14 +73,16 @@ export class GameCardsComponent implements OnInit{
     this.isGameOver = true;
     if (this.playerOne.hp > this.playerCpu.hp) {
       Swal.fire({
-        title: '¡Has ganado el juego!\nTu puntaje es '+ (this.points+=5)+'\nQuerés seguir jugando?',
+        title: '¡Has ganado el juego!\nTu puntaje es '+ (this.points+=5)+'\n<hr>',
+        text: 'Querés seguir jugando?',
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Si',
         cancelButtonColor: '#d33',
         showCancelButton: true,
         cancelButtonText: 'No',
-        background: 'red'
+        background: '#7c1ca4',
+        color: '#fff'
       }).then((result) => {
         if (!result.isConfirmed) {
           this.saveResults();
@@ -88,14 +90,16 @@ export class GameCardsComponent implements OnInit{
       });
     } else if (this.playerOne.hp === this.playerCpu.hp) {
       Swal.fire({
-        title: 'La partida terminó en empate.\nTu puntaje es '+ (this.points+=3)+'\nQuerés seguir jugando?',
+        title: 'La partida terminó en empate.\nTu puntaje es '+ (this.points+=3)+'\n<hr>',
+        text: 'Querés seguir jugando?',
         icon: 'warning',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Si',
         cancelButtonColor: '#d33',
         showCancelButton: true,
         cancelButtonText: 'No',
-        background: 'red'
+        background: '#7c1ca4',
+        color: '#fff'
       }).then((result) => {
         if (!result.isConfirmed) {
           this.saveResults();
@@ -103,14 +107,16 @@ export class GameCardsComponent implements OnInit{
       });
     } else {
       Swal.fire({
-        title: 'La máquina ha ganado el juego..\nTu puntaje es '+ (this.points-=2)+'\nQuerés seguir jugando?',
-        icon: 'warning',
+        title: 'La máquina ha ganado el juego...\nTu puntaje es '+ (this.points-=2)+'\n<hr>',
+        text: 'Querés seguir jugando?',
+        icon: 'error',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Si',
         cancelButtonColor: '#d33',
         showCancelButton: true,
         cancelButtonText: 'No',
-        background: 'red'
+        background: '#7c1ca4',
+        color: '#fff'
       }).then((result) => {
         if (!result.isConfirmed) {
           this.saveResults();

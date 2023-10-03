@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 import { User } from 'src/app/models/user.model';
 import { UtilsService } from 'src/app/services/auth.service';
 import { FirebaseService } from 'src/app/services/firebase.service';
-import { SpinnerComponent } from '../spinner/spinner.component';
 import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 

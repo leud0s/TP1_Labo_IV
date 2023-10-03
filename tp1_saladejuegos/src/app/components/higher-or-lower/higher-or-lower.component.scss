@@ -8,11 +8,14 @@
     height: 150px;
     padding-bottom: 20px;
 }
-.icono-personalizado::before {
-    content: ""; /* Añade un contenido vacío para mostrar la imagen */
-    width: 40px; /* Ajusta el ancho de la imagen */
-    height: 40px; /* Ajusta la altura de la imagen */
-    background-image: url('https://w7.pngwing.com/pngs/959/708/png-transparent-error-icon-attention-angle-triangle-logo-thumbnail.png'); /* Ruta de tu icono */
-    background-size: cover; /* Ajusta el tamaño de la imagen */
-    display: inline-block; /* Permite alinear correctamente */
-  }
+.button{
+    cursor: pointer;
+}
+.back{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+.row-back{
+    height: 40px;
+}
