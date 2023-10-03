@@ -52,16 +52,14 @@ export class HigherOrLowerComponent {
           this.points +=5;
           Swal.fire({
             title: '¡Correcto! La siguiente carta es ' + (choice === 'higher' ? 'mayor' : 'menor')+'.\nQuerés seguir jugando?',
-            icon: 'warning',
+            icon: 'success',
             confirmButtonColor: '#3085d6',
             confirmButtonText: 'Si',
             cancelButtonColor: '#d33',
             showCancelButton: true,
             cancelButtonText: 'No',
-            background: '',
-            customClass:{
-              image: '../../../assets/atras.png'
-            }
+            background: '#7c1ca4',
+            color: '#fff'
           }).then((result) => {
             if (!result.isConfirmed) {
               this.saveResults();
@@ -71,13 +69,14 @@ export class HigherOrLowerComponent {
       this.points -=2;
       Swal.fire({
         title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor')+'.\nQuerés seguir jugando?',
-        icon: 'warning',
+        icon: 'error',
         confirmButtonColor: '#3085d6',
         confirmButtonText: 'Si',
         cancelButtonColor: '#d33',
         showCancelButton: true,
         cancelButtonText: 'No',
-        background: 'red'
+        background: '#7c1ca4',
+        color: '#fff'
       }).then((result) => {
         if (!result.isConfirmed) {
           this.saveResults();
