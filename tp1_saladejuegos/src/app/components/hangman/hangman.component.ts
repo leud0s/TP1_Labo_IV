@@ -84,10 +84,11 @@ export class HangmanComponent {
       confirmButtonText: 'Si',
       cancelButtonColor: '#d33',
       showCancelButton: true,
-      cancelButtonText: 'No'
+      cancelButtonText: 'No',
+      background: 'red'
     }).then((result) => {
       if (!result.isConfirmed) {
-        this.guardarResultados();
+        this.saveResults();
       }
     })
     this.worldRandom = '';
@@ -109,7 +110,7 @@ export class HangmanComponent {
       cancelButtonText: 'No'
     }).then((result) => {
       if (!result.isConfirmed) {
-        this.guardarResultados();
+        this.saveResults();
       }
     });
     this.worldRandom = '';
@@ -119,7 +120,7 @@ export class HangmanComponent {
     this.loadGame();
   }
 
-  guardarResultados(){
+  saveResults(){
     let date = new Date();
     let dateString = date.toString();
     this.resultGame = {
