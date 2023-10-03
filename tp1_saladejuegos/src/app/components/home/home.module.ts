@@ -30,7 +30,6 @@ import { HttpClient } from '@angular/common/http';
     MatIconModule,
     MatDialogModule,
     FormsModule,
-    HttpClient
       // Agrega el módulo de enrutamiento a los imports
   ]
 })
