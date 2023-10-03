@@ -58,7 +58,10 @@ export class HigherOrLowerComponent {
             cancelButtonColor: '#d33',
             showCancelButton: true,
             cancelButtonText: 'No',
-            background: 'red'
+            background: '',
+            customClass:{
+              image: '../../../assets/atras.png'
+            }
           }).then((result) => {
             if (!result.isConfirmed) {
               this.saveResults();
