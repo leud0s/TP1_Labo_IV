@@ -20,7 +20,7 @@ export class HangmanComponent {
   worldSelected:string[]=[];
   codedWorld:string='';
   countLetter:number = 0;
-  successes : number = 0;
+  points : number = 0;
   times : number = 0;
   usuario : any;
   resultGame !: Results;
@@ -100,7 +100,7 @@ export class HangmanComponent {
   }
   winner(){
     this.times++;
-    this.successes++;
+    this.points++;
     Swal.fire({
       title: 'Ganaste!!\nQuerés seguir jugando?',
       icon: 'success',
@@ -127,10 +127,10 @@ export class HangmanComponent {
     this.resultGame = {
       uid: this.usuario.uid,
       mail: this.usuario.email,
-      fecha: dateString,
-      juego: 'Ahorcado',
-      aciertos: this.successes,
-      intentos: this.times
+      date: dateString,
+      game: 'Ahorcado',
+      points: this.points,
+      rounds: this.times
     }
     this.resServ.saveResults(this.resultGame);
   }

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 })
 export class HomeComponent {
   @Input() title: string;
-  nameTitle: string;
+  nameTitle: any;
   constructor( private router: ActivatedRoute, 
     private firebaseSvc: FirebaseService,
     private utilsSvc: UtilsService,
@@ -21,11 +21,11 @@ export class HomeComponent {
     ){}
 
   ngOnInit() {
-    this.router.queryParams.subscribe(params => {
-      const email = params['email'];
-      const name = params['name'];
-      this.nameTitle = name;
-    });
+    this.firebaseSvc.getUserLogged().subscribe(
+      user=>{
+        this.nameTitle = user.displayName;
+      }
+    )
   }
   async logout(){
     await this.firebaseSvc.logout();

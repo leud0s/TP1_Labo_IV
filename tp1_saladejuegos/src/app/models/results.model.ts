@@ -1,8 +1,8 @@
 export interface Results {
     uid:string;
     mail:string;
-    fecha:string;
-    intentos:number;
-    aciertos:number;
-    juego:string;
+    date:string;
+    points:number;
+    rounds:number;
+    game:string;
 }

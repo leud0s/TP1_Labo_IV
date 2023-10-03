@@ -14,7 +14,7 @@ export class HigherOrLowerComponent {
   nextCardValue: number;
   currentWord: string;
   resultGame !: Results;
-  successes : number = 0;
+  points : number = 0;
   times : number = 0;
   user: any;
   
@@ -49,6 +49,7 @@ export class HigherOrLowerComponent {
   compareCards(choice: string): void {
     if ((choice === 'higher' && this.nextCardValue > this.currentCardValue) ||
         (choice === 'lower' && this.nextCardValue < this.currentCardValue)) {
+          this.points +=5;
           Swal.fire({
             title: '¡Correcto! La siguiente carta es ' + (choice === 'higher' ? 'mayor' : 'menor')+'.\nQuerés seguir jugando?',
             icon: 'warning',
@@ -64,6 +65,7 @@ export class HigherOrLowerComponent {
             }
           });
     } else {
+      this.points -=2;
       Swal.fire({
         title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor')+'.\nQuerés seguir jugando?',
         icon: 'warning',
@@ -92,10 +94,10 @@ export class HigherOrLowerComponent {
     this.resultGame = {
       uid: this.user.uid,
       mail: this.user.email,
-      fecha: dateString,
-      juego: 'Ahorcado',
-      aciertos: this.successes,
-      intentos: this.times
+      date: dateString,
+      game: 'MayorMenor',
+      points: this.points,
+      rounds: this.times
     }
     this.resServ.saveResults(this.resultGame);
   }

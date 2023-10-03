@@ -294,10 +294,10 @@ saveResults(){
   this.resultGame = {
     uid: this.usuario.uid,
     mail: this.usuario.email,
-    fecha: dateString,
-    juego: 'BattleCards',
-    aciertos: this.points,
-    intentos: this.times
+    date: dateString,
+    game: 'BattleCards',
+    points: this.points,
+    rounds: this.times
   }
   this.resServ.saveResults(this.resultGame);
 }

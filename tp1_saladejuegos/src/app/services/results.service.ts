@@ -9,20 +9,20 @@ import { Results } from '../models/results.model';
 })
 export class ResultsService {
   itemsCollection !: AngularFirestoreCollection<Results>;
-  todasLosResultados !: Observable<Results[]>;  
+  allScores !: Observable<Results[]>;  
 
   constructor(private firestore:AngularFirestore,private ruteo : Router) { }
 
   saveResults(nuevaResultado:Results){
-    this.firestore.collection('resultados').add(nuevaResultado);
+    this.firestore.collection('scores').add(nuevaResultado);
     setTimeout(() => {
       this.ruteo.navigateByUrl('/home')      
     }, 1000);
   }
 
   getAllResults(){
-    this.itemsCollection = this.firestore.collection<Results>('resultados');
-    return this.todasLosResultados = this.itemsCollection.valueChanges();
+    this.itemsCollection = this.firestore.collection<Results>('scores');
+    return this.allScores = this.itemsCollection.valueChanges();
   } 
 
 }
