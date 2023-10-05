@@ -22,13 +22,11 @@ export class ChatComponent implements OnInit {
   constructor(private auth: FirebaseService, private router: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.router.queryParams.subscribe(params => {
-      this.userName = params['name'];
-    });
 
     this.messages$ = this.auth.getUserLogged().pipe(
       switchMap(user => {
         this.userIsLogged = user
+        this.userName = user.displayName;
         return this.auth.loadMessages();
       })
     );

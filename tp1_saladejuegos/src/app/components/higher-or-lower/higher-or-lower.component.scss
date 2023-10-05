@@ -5,11 +5,8 @@
     align-items: center;
 }
 .card-image{
-    height: 150px;
+    height: 450px;
     padding-bottom: 20px;
-}
-.button{
-    cursor: pointer;
 }
 .back{
     position: absolute;
@@ -18,4 +15,5 @@
 }
 .row-back{
     height: 40px;
+    cursor: pointer;
 }

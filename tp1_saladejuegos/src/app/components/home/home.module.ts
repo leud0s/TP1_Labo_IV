@@ -11,6 +11,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {ChatComponent} from '../chat/chat.component';
 import { FormsModule } from '@angular/forms';
 import { HangmanComponent } from '../hangman/hangman.component';
+import { HigherOrLowerComponent } from '../higher-or-lower/higher-or-lower.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { HangmanComponent } from '../hangman/hangman.component';
     CardComponent,
     ChatComponent,
     HangmanComponent,
+    HigherOrLowerComponent
   ],
   imports: [
     CommonModule,
