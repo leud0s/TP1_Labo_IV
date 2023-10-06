@@ -1,0 +1,56 @@
+/* Estilo para el contenedor principal */
+.container-fluid.center {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    color: #f0f0f0;
+    padding: 20px;
+  }
+  
+  /* Estilo para el título */
+  .container-title {
+    margin-bottom: 20px;
+  }
+  
+  .title {
+    font-size: 2em;
+  }
+  
+  /* Estilo para la imagen de la carta */
+  .card-image {
+    width: 400px; /* Ajusta el tamaño de acuerdo a tu necesidad */
+    height: auto; /* Permite mantener la proporción de la imagen */
+  }
+  
+  /* Estilo para los botones */
+  .container-buttons {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn {
+    font-size: 1.5em;
+  }
+  
+  #higher-button {
+    background-color: #ff5252;
+  }
+  
+  #lower-button {
+    background-color: #2196f3;
+  }
+  
+  /* Estilo para el botón de volver */
+  .back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .row-back {
+    width: 30px;
+  }
+  

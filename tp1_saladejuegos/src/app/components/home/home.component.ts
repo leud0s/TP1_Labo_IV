@@ -32,6 +32,6 @@ export class HomeComponent {
     this.utilsSvc.routerLink("login");
   }
   getGameCards(){
-    this.navigate.navigate(['game-cards']);
+    this.navigate.navigate(['/games/game']);
   }
 }

@@ -1,0 +1,51 @@
+.container-fluid {
+    padding: 20px;
+    color: #fff;
+  }
+  
+  .container {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    background-color: #7c1ca4;
+  }
+  
+  h1 {
+    font-size: 2em;
+    margin-bottom: 20px;
+  }
+  
+  h3 {
+    font-size: 1.3em;
+  }
+  
+  .row.justify-content-center.mt-4 {
+    margin-top: 2em;
+  }
+  
+  a.mat-flat-button {
+    font-size: 1.5em;
+    margin: 0.5em;
+  }
+  
+  a.mat-flat-button:hover {
+    background-color: #337ab7;
+ 
+  }
+  
+  p {
+    font-size: 1.2em;
+  }
+  
+  .back {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+  }
+  
+  .row-back {
+    width: 30px;
+  }
+  
+  /* Add any additional styles as needed */
+  

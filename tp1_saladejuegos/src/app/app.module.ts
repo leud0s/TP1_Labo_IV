@@ -23,6 +23,7 @@ import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
+
 @NgModule({
     declarations: [
         AppComponent,
@@ -32,6 +33,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         QuienSoyComponent,
         SpinnerComponent,
         SnackBarComponent,
+
     ],
     providers: [
         { provide: FIREBASE_OPTIONS, useValue: environment.firebase }

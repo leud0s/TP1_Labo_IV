@@ -16,6 +16,13 @@ const routes: Routes = [
         (m) => m.HomeModule
       ),
   },
+  {
+    path: 'games',
+    loadChildren: () =>
+      import('../app/components/games/games.module').then(
+        (m) => m.GamesModule
+      )
+  },
   { path: 'registro', component: RegistroComponent },
   { path: 'quiensoy', component: QuienSoyComponent },
   { path: '**', component: NotFoundComponent },
