@@ -10,7 +10,6 @@ import { ChatComponent } from '../chat/chat.component';
 import { FormsModule } from '@angular/forms';
 
 
-
 @NgModule({
   declarations: [
     HomeComponent,
