@@ -11,6 +11,7 @@ import { FirebaseService } from 'src/app/services/firebase.service';
 })
 export class HigherOrLowerComponent implements OnInit {
   cardImage: string;
+  cardImageAfter: string = '../../../assets/Naipes/card-back.png';
   currentCardValue: number;
   nextCardValue: number;
   currentWord: string;

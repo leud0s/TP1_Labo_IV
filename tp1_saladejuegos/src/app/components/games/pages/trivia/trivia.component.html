@@ -1,6 +1,6 @@
 <div class="container">
-    <img id="pokemon-image" [src]="pokemonImage" alt="Pokemon Image">
-    <button *ngFor="let option of options" (click)="checkAnswer(option, options[0])">{{ option }}</button>
+    <img id="pokemon-image" class="img" [src]="pokemonImage" alt="Pokemon Image">
+    <button class="btn btn-success" *ngFor="let option of options" (click)="checkAnswer(option, options[0])">{{ option }}</button>
     <div>
       <a class="back" data-toggle="tooltip" data-placement="bottom" title="Volver" routerLink='/home'>
           <img src="../../../assets/atras.png" alt="flecha-volver" class="row-back">

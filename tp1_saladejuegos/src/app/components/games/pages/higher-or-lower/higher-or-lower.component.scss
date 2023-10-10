@@ -17,7 +17,9 @@
   .title {
     font-size: 2em;
   }
-  
+  .container-cards{
+    display: flex;
+  }
   /* Estilo para la imagen de la carta */
   .card-image {
     width: 400px; /* Ajusta el tamaño de acuerdo a tu necesidad */

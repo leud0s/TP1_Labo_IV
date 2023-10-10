@@ -8,13 +8,19 @@ import { GamesComponent } from './pages/games.component';
 import { FormsModule } from '@angular/forms';
 import { HigherOrLowerComponent } from './pages/higher-or-lower/higher-or-lower.component';
 import { TriviaComponent } from './pages/trivia/trivia.component';
+import { HttpClientModule } from '@angular/common/http';
+import { PokeapiService } from 'src/app/services/pokeapi.service';
 @NgModule({
   declarations: [CardComponent, HangmanComponent, GameCardsComponent, GamesComponent, HigherOrLowerComponent, TriviaComponent],
   imports: [
     CommonModule,
     GamesRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
     
+  ],
+  providers:[
+    PokeapiService
   ]
 })
 export class GamesModule { }

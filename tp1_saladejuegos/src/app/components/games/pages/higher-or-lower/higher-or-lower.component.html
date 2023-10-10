@@ -3,7 +3,11 @@
   <div class="container-title">
     <h2 class="title">Mayor o menor</h2>
   </div>
-  <img id="card-image" class="card-image" [src]="cardImage" alt="Card Image">
+  <div class="container-cards">
+    <img [src]="cardImageAfter" class="card-image" alt="">
+    <img id="card-image" class="card-image" [src]="cardImage" alt="Card Image">
+
+  </div>
   <div class="container-buttons">
     <button class="btn btn-danger m-2" id="higher-button" (click)="compareCards('higher')">Mayor</button>
     <button class="btn btn-primary m-2" id="lower-button" (click)="compareCards('lower')">Menor</button>
