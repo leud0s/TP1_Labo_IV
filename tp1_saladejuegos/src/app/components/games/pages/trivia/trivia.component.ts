@@ -11,6 +11,7 @@ export class TriviaComponent implements OnInit{
   pokemonImage: string;
   options: string[] = [];
   score: number = 0;
+  pokemonNameCorrect: string;
   constructor(private pokeapiService: PokeapiService) { }
 
   ngOnInit() {
@@ -22,8 +23,9 @@ export class TriviaComponent implements OnInit{
     this.pokeapiService.getRandomPokemon().subscribe(
       (response) => {
         const pokemonName = response.name[0].toUpperCase() + response.name.substring(1);
-        const imageUrl = response.sprites.front_default;
+        const imageUrl = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${response.id}.png`/*response.sprites.front_default*/;
         this.pokemonImage = imageUrl;
+        this.pokemonNameCorrect =pokemonName.toUpperCase();
         this.generateOptions(response.id, pokemonName);
       },
       (error) => {
