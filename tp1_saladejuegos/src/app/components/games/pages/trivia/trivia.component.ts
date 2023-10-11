@@ -10,12 +10,12 @@ import Swal from 'sweetalert2';
 export class TriviaComponent implements OnInit{
   pokemonImage: string;
   options: string[] = [];
-
+  score: number = 0;
   constructor(private pokeapiService: PokeapiService) { }
 
   ngOnInit() {
     this.getRandomPokemon();
-    console.log(this.getRandomPokemon());
+    //console.log(this.getRandomPokemon());
   }
 
   getRandomPokemon() {
@@ -43,12 +43,17 @@ export class TriviaComponent implements OnInit{
         this.getRandomPokemonName().subscribe(
           (name) => {
             this.options.push(name.toUpperCase());
+            this.shuffleOptions();
           }
         );
       }
     }
+    this.shuffleOptions();
   }
-
+  shuffleOptions() {
+    // Ordena aleatoriamente el array this.options
+    this.options.sort(() => Math.random() - 0.5);
+  }
   getRandomPokemonName() {
     const randomId = Math.floor(Math.random() * 151) + 1;
     return this.pokeapiService.getPokemonNameById(randomId);
@@ -56,6 +61,8 @@ export class TriviaComponent implements OnInit{
 
   checkAnswer(selectedName: string, correctName: string) {
     if (selectedName === correctName) {
+      this.score += 5;
+   
       Swal.fire({
         title: '¡Correcto! El Pokémon es ' + correctName +'.\n<hr>',
         text: 'Querés seguir jugando?',
@@ -74,6 +81,9 @@ export class TriviaComponent implements OnInit{
         }
       });
     } else {
+       this.score -= 2;
+       if(this.score < 0) this.score = 0;
+      
       Swal.fire({
         title: 'Incorrecto... El Pokémon era ' + correctName +'.\n<hr>',
         text: 'Querés seguir jugando?',
