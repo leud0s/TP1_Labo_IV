@@ -46,6 +46,61 @@
   .row-back {
     width: 30px;
   }
-  
+  .gallow{
+    height: 200px;
+    position: absolute;
+    top: 40px;
+    left: 180px;
+  }
+  .head{
+    height: 150px;
+    position: absolute;
+    top: 120px;
+    left: 240px;
+    z-index: 9;
+  }
+  .body-up{
+    height: 150px;
+    position: absolute;
+    top: 210px;
+    left: 240px;
+    z-index: 5;
+  }
+  .body-down{
+    width: 100px;
+    position: absolute;
+    top: 320px;
+    left: 265px;
+    z-index: 4;
+  }
+  .leg-right{
+    height: 120px;
+    position: absolute;
+    top: 350px;
+    left: 218.5px;
+    
+  }
+  .leg-left{
+    height: 120px;
+    position: absolute;
+    top: 350px;
+    left: 286.5px;
+    
+  }
+  .hand-right{
+    height: 80px;
+    position: absolute;
+    top: 230px;
+    left: 203px;
+    transform: rotate(45deg);
+  }
+  .hand-left{
+    height: 80px;
+    position: absolute;
+    top: 230px;
+    left: 345px;
+    transform: rotate(-45deg);
+    
+  }
   /* Add any additional styles as needed */
   

@@ -1,6 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Results } from 'src/app/models/results.model';
+import { FirebaseService } from 'src/app/services/firebase.service';
 import { PokeapiService } from 'src/app/services/pokeapi.service';
+import { ResultsService } from 'src/app/services/results.service';
 import Swal from 'sweetalert2';
 @Component({
   selector: 'app-trivia',
@@ -12,11 +16,24 @@ export class TriviaComponent implements OnInit{
   options: string[] = [];
   score: number = 0;
   pokemonNameCorrect: string;
-  constructor(private pokeapiService: PokeapiService) { }
+  resultGame !: Results;
+  rounds : number = 0;
+  user: any;
+  loading:boolean =false;
+  constructor(private pokeapiService: PokeapiService, 
+    private resServ : ResultsService,
+    private auth: FirebaseService,
+    private router: Router) { }
 
   ngOnInit() {
     this.getRandomPokemon();
     //console.log(this.getRandomPokemon());
+    this.auth.getUserLogged().subscribe(
+      user=>{
+        console.log(user);
+        this.user = user;
+      }
+    )
   }
 
   getRandomPokemon() {
@@ -53,7 +70,6 @@ export class TriviaComponent implements OnInit{
     this.shuffleOptions();
   }
   shuffleOptions() {
-    // Ordena aleatoriamente el array this.options
     this.options.sort(() => Math.random() - 0.5);
   }
   getRandomPokemonName() {
@@ -62,6 +78,7 @@ export class TriviaComponent implements OnInit{
   }
 
   checkAnswer(selectedName: string, correctName: string) {
+    this.rounds +=1;
     if (selectedName === correctName) {
       this.score += 5;
    
@@ -80,6 +97,7 @@ export class TriviaComponent implements OnInit{
         color: '#fff'
       }).then((result) => {
         if (!result.isConfirmed) {
+          this.saveResults();
         }
       });
     } else {
@@ -101,10 +119,24 @@ export class TriviaComponent implements OnInit{
         color: '#fff'
       }).then((result) => {
         if (!result.isConfirmed) {
+          this.saveResults();
         }
       });
     }
     this.getRandomPokemon();
+  }
+  saveResults(){
+    let date = new Date();
+    let dateString = date.toString();
+    this.resultGame = {
+      uid: this.user.uid,
+      mail: this.user.email,
+      date: dateString,
+      game: 'PokePreguntados',
+      points: this.score,
+      rounds: this.rounds
+    }
+    this.resServ.saveResults(this.resultGame);
   }
 }
 

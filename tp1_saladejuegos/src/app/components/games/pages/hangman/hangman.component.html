@@ -7,6 +7,14 @@
                     <h1 class="text-center">Ahorcado</h1>
                 </div>
                 <div class="container-fluid mt-4" style="height: 20vh;">
+                    <img class="gallow" src="../../../../../assets/Buttons/horca.png" alt="">
+                    <img class="head" src="{{head}}" alt="">
+                    <img class="hand-right"  src="{{handRight}}" alt="">
+                    <img class="hand-left" src="{{handLeft}}" alt="">
+                    <img class="body-down" src="{{bodyDown}}" alt="">
+                    <img class="body-up" src="{{bodyUp}}" alt="">
+                    <img class="leg-left" src="{{legLeft}}" alt="">
+                    <img class="leg-right" src="{{legRight}}" alt="">
                     <h3 class="row justify-content-center" style="font-size: xxx-large;">
                         {{ this.codedWorld }}
                     </h3>
@@ -28,7 +36,7 @@
                     </div>
                 </div>
                 <div>
-                    <a class="back" data-toggle="tooltip" data-placement="bottom" title="Volver" routerLink='/home'>
+                    <a class="back" (click)="saveResults()" data-toggle="tooltip" data-placement="bottom" title="Volver" routerLink='/home'>
                         <img src="../../../assets/atras.png" alt="flecha-volver" class="row-back">
                     </a>
                 </div>

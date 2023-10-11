@@ -24,6 +24,13 @@ export class HangmanComponent {
   times : number = 0;
   usuario : any;
   resultGame !: Results;
+  head: string;
+  bodyUp: string;
+  bodyDown: string;
+  legLeft: string;
+  legRight: string;
+  handLeft: string;
+  handRight: string;
   
   constructor(private resServ : ResultsService,private auth : FirebaseService) {
     this.auth.getUserLogged().subscribe(
@@ -56,6 +63,15 @@ export class HangmanComponent {
       this.worldSelected.push('_')
     }
     this.codedWorld = this.worldSelected.join(' ');
+    setTimeout(()=>{
+      this.head = "";
+    this.bodyUp= "";
+    this.bodyDown= "";
+    this.legLeft= "";
+    this.legRight= "";
+    this.handLeft= "";
+    this.handRight= "";
+    },1500);
   }
 
   verifyLetter(letter:string){
@@ -71,11 +87,35 @@ export class HangmanComponent {
       this.codedWorld = this.worldSelected.join(' ');     
     }else{
       this.maxErrors--;
+      this.draw(this.maxErrors);
     }
+    
     if(this.countLetter == 0)  this.winner();
     if(this.maxErrors == 0)  this.loser();
   }
-
+  draw(error: number){
+    switch(error){
+      case 0:
+        this.legLeft = "../../../../../assets/hangman/leght-left.png"
+        break;
+      case 1:
+        this.legRight = "../../../../../assets/hangman/leght-right.png"
+        break;
+      case 2:
+        this.handLeft = "../../../../../assets/hangman/hand-left.png"
+        break;
+      case 3:
+        this.handRight = "../../../../../assets/hangman/hand-right.png"
+        break;
+      case 4:
+        this.bodyUp = "../../../../../assets/hangman/camisa.png";
+        this.bodyDown= "../../../../../assets/hangman/jersey.png";
+        break;
+      case 5:
+        this.head = "../../../../../assets/hangman/head.png";
+        break;
+    }
+  }
   loser(){
     this.times++;
     Swal.fire({

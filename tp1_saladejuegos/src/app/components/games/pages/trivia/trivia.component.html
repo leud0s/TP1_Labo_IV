@@ -6,7 +6,7 @@
         <button class="btn btn-success" *ngFor="let option of options" (click)="checkAnswer(option, pokemonNameCorrect)">{{ option }}</button>
     </div>
     <div>
-      <a class="back" data-toggle="tooltip" data-placement="bottom" title="Volver" routerLink='/home'>
+      <a class="back" (click)="saveResults()" data-toggle="tooltip" data-placement="bottom" title="Volver" routerLink='/home'>
           <img src="../../../assets/atras.png" alt="flecha-volver" class="row-back">
       </a>
   </div>
