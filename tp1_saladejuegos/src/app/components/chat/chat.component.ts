@@ -12,7 +12,7 @@ import { Message } from 'src/app/models/message.model';
   styleUrls: ['./chat.component.scss']
 })
 export class ChatComponent implements OnInit {
-  messages$: Observable<QuerySnapshot<Message>>;
+  messages$: Observable<Message[]>;
   userIsLogged: any;
   showChat = false;
   userName: any;
@@ -25,20 +25,15 @@ export class ChatComponent implements OnInit {
 
     this.messages$ = this.auth.getUserLogged().pipe(
       switchMap(user => {
-        this.userIsLogged = user
+        this.userIsLogged = user;
         this.userName = user.displayName;
         return this.auth.loadMessages();
       })
     );
-
+  
     this.messages$.subscribe(
-      (querySnapshot) => {
-        this.messages = querySnapshot.docs.map(doc => ({
-          uid: doc.data().uid,
-          user: doc.data().user,
-          text: doc.data().text,
-          date: doc.data().date
-        }));
+      (messages: Message[]) => {
+        this.messages = messages;
       },
       (error) => {
         console.error('Error obteniendo documentos: ', error);

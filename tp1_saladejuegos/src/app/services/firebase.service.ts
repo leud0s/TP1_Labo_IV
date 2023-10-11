@@ -51,8 +51,8 @@ export class FirebaseService {
       date: message.date,
     })
   }
-  loadMessages(): Observable<any>{
-    return this.db.collection<Message>('messages', ref => ref.orderBy('date', 'asc')).get();
+  loadMessages(): Observable<Message[]> {
+    return this.db.collection<Message>('messages', ref => ref.orderBy('date', 'asc')).valueChanges();
   }
   getUserLogged() {
     return this.auth.authState;
