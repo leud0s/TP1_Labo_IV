@@ -69,8 +69,9 @@ export class GameCardsComponent implements OnInit{
   private endGame() {
     this.isGameOver = true;
     if (this.playerOne.hp > this.playerCpu.hp) {
+      this.points+=5;
       Swal.fire({
-        title: '¡Has ganado el juego!\nTu puntaje es '+ (this.points+=5)+'\n<hr>',
+        title: '¡Has ganado el juego!\nTu puntaje es '+ (this.points)+'\n<hr>',
         text: 'Querés seguir jugando?',
         icon: 'warning',
         confirmButtonColor: '#3085d6',
@@ -86,8 +87,9 @@ export class GameCardsComponent implements OnInit{
         }
       });
     } else if (this.playerOne.hp === this.playerCpu.hp) {
+      this.points+=3
       Swal.fire({
-        title: 'La partida terminó en empate.\nTu puntaje es '+ (this.points+=3)+'\n<hr>',
+        title: 'La partida terminó en empate.\nTu puntaje es '+ (this.points)+'\n<hr>',
         text: 'Querés seguir jugando?',
         icon: 'warning',
         confirmButtonColor: '#3085d6',
@@ -103,8 +105,10 @@ export class GameCardsComponent implements OnInit{
         }
       });
     } else {
+      this.points-=2;
+      if(this.points < 0) this.points = 0;
       Swal.fire({
-        title: 'La máquina ha ganado el juego...\nTu puntaje es '+ (this.points-=2)+'\n<hr>',
+        title: 'La máquina ha ganado el juego...\nTu puntaje es '+ (this.points)+'\n<hr>',
         text: 'Querés seguir jugando?',
         icon: 'error',
         confirmButtonColor: '#3085d6',
@@ -119,7 +123,7 @@ export class GameCardsComponent implements OnInit{
           this.saveResults();
         }
       });
-      if(this.points < 0) this.points = 0;
+      
     }
     this.restartGame();
   }

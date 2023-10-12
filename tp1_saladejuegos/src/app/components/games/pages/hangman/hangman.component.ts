@@ -118,6 +118,8 @@ export class HangmanComponent {
   }
   loser(){
     this.times++;
+    this.points -=1;
+    if(this.points < 0) this.points = 0;
     Swal.fire({
       title: 'Perdiste, la palabra era: '+this.worldRandom+'\n <hr>',
       text: 'Querés seguir jugando?',
@@ -142,7 +144,7 @@ export class HangmanComponent {
   }
   winner(){
     this.times++;
-    this.points++;
+    this.points += 3;
     Swal.fire({
       title: 'Ganaste!! La palabra era: '+this.worldRandom+'\n <hr>',
       text: 'Querés seguir jugando?',
