@@ -56,11 +56,40 @@ export class HigherOrLowerComponent implements OnInit {
 
   compareCards(choice: string): void {
     const isHigher = choice === 'higher';
+    const isSameValue = this.currentCardValue === this.nextCardValue;
+
+    if (isSameValue) {
+        // Si las cartas tienen el mismo valor, puedes manejarlo de acuerdo a tus necesidades.
+        // Por ejemplo, mostrar un mensaje y no actualizar las cartas.
+        Swal.fire({
+            title: '¡Las cartas tienen el mismo valor!',
+            text: 'Es un empate',
+            icon: 'warning',
+            confirmButtonColor: '#3085d6',
+            confirmButtonText: 'OK',
+            background: '#7c1ca4',
+            color: '#fff'
+        });
+        this.currentCardValue = this.nextCardValue;
+    this.nextCardValue = this.getRandomCardValue();
+    this.currentWord = this.getRandomWord();
+
+    const auxiliarCard = this.cardImage;
+    setTimeout(() => {
+      this.cardImageAfter = auxiliarCard;
+      setTimeout(() => {
+        this.cardImageAfter = '../../../assets/Naipes/card-back.png';
+      }, 2000);
+    }, 10);
+    this.updateCardImage(this.currentCardValue, this.currentWord);
+        return;  // Sal del método sin actualizar las cartas
+    }
+
     const isCorrect = (isHigher && this.nextCardValue > this.currentCardValue) ||
                       (!isHigher && this.nextCardValue < this.currentCardValue);
 
     this.points += isCorrect ? 5 : -2;
-
+    if(this.points < 0) this.points = 0;
     const title = isCorrect ? '¡Correcto!' : '¡Incorrecto!';
     const cardComparison = isHigher ? 'mayor' : 'menor';
 
@@ -85,14 +114,14 @@ export class HigherOrLowerComponent implements OnInit {
     this.nextCardValue = this.getRandomCardValue();
     this.currentWord = this.getRandomWord();
 
-    this.updateCardImage(this.currentCardValue, this.currentWord);
-
+    const auxiliarCard = this.cardImage;
     setTimeout(() => {
-      this.cardImageAfter = `../../../assets/Naipes/${this.currentCardValue}-${this.currentWord}.png`;
-        setTimeout(() => {
-            this.cardImageAfter = '../../../assets/Naipes/card-back.png';
-        }, 2500);
+      this.cardImageAfter = auxiliarCard;
+      setTimeout(() => {
+        this.cardImageAfter = '../../../assets/Naipes/card-back.png';
+      }, 2000);
     }, 10);
+    this.updateCardImage(this.currentCardValue, this.currentWord);
 }
 
   saveResults(){
