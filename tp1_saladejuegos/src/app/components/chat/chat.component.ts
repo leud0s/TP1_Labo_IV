@@ -34,6 +34,7 @@ export class ChatComponent implements OnInit {
     this.messages$.subscribe(
       (messages: Message[]) => {
         this.messages = messages;
+        this.scrollToBottom(); 
       },
       (error) => {
         console.error('Error obteniendo documentos: ', error);
@@ -49,34 +50,23 @@ export class ChatComponent implements OnInit {
       text: this.message,
       date: now.toLocaleString(),
     };
-
+  
     this.auth.saveMessages(messageNew);
     this.messages.push(messageNew);
-    setTimeout(()=>{
-      this.scrollToBottom();
-      this.scrollToTheLastElementByClassName();
+  
+    setTimeout(() => {
       this.message = "";
-    },10);
-    
-
+      this.scrollToBottom();
+    }, 10);
   }
+  
   determineMessageClass(message: Message): string {
     return message.uid === this.userIsLogged.uid ? 'send' : 'received';
   }
-  scrollToTheLastElementByClassName(){
-    let elements = document.getElementsByClassName('msg');
-    let last: any = elements[(elements.length - 1)];
-    let toppos = last.offsetTop;
-    console.log(toppos);
-    
-    
-    document.getElementById("container-messages").scrollTop = toppos;
-  }  
   scrollToBottom() {
     const containerMessages = document.getElementById("container-messages");
     if (containerMessages) {
       const toppos = containerMessages.scrollHeight;
-      console.log(toppos);
       containerMessages.scrollTop = toppos;
     }
   }

@@ -14,6 +14,7 @@ export class HigherOrLowerComponent implements OnInit {
   cardImageAfter: string = '../../../assets/Naipes/card-back.png';
   currentCardValue: number;
   nextCardValue: number;
+  nextCardImame: string;
   currentWord: string;
   resultGame !: Results;
   points : number = 0;
@@ -25,6 +26,7 @@ export class HigherOrLowerComponent implements OnInit {
     this.cardImage = '';
     this.currentCardValue = this.getRandomCardValue();
     this.nextCardValue = this.getRandomCardValue();
+    this.nextCardImame = this.getRandomWord();
     this.currentWord = this.getRandomWord();
     this.updateCardImage(this.currentCardValue, this.currentWord);
    
@@ -53,54 +55,46 @@ export class HigherOrLowerComponent implements OnInit {
   }
 
   compareCards(choice: string): void {
-    if ((choice === 'higher' && this.nextCardValue > this.currentCardValue) ||
-        (choice === 'lower' && this.nextCardValue < this.currentCardValue)) {
-          this.points +=5;
-          Swal.fire({
-            title: '¡Correcto! La siguiente carta es ' + (choice === 'higher' ? 'mayor' : 'menor')+'.\n<hr>',
-            text: 'Querés seguir jugando?',
-            icon: 'success',
-            confirmButtonColor: '#3085d6',
-            confirmButtonText: 'Si',
-            cancelButtonColor: '#d33',
-            showCancelButton: true,
-            cancelButtonText: 'No',
-            background: '#7c1ca4',
-            color: '#fff'
-          }).then((result) => {
-            if (!result.isConfirmed) {
-              this.saveResults();
-            }
-          });
-    } else {
-      this.points -=2;
-      Swal.fire({
-        title: '¡Incorrecto! La siguiente carta es ' + (choice === 'higher' ? 'menor' : 'mayor')+'\n<hr>',
-        text: 'Querés seguir jugando?',
-        icon: 'error',
-        /*imageUrl: 'https://i.gifer.com/7efs.gif',
-        imageWidth: 100,
-        imageHeight: 100, */
+    const isHigher = choice === 'higher';
+    const isCorrect = (isHigher && this.nextCardValue > this.currentCardValue) ||
+                      (!isHigher && this.nextCardValue < this.currentCardValue);
+
+    this.points += isCorrect ? 5 : -2;
+
+    const title = isCorrect ? '¡Correcto!' : '¡Incorrecto!';
+    const cardComparison = isHigher ? 'mayor' : 'menor';
+
+    Swal.fire({
+        title: `${title} La siguiente carta es ${cardComparison}\n<hr>`,
+        text: '¿Quieres seguir jugando?',
+        icon: isCorrect ? 'success' : 'error',
         confirmButtonColor: '#3085d6',
-        confirmButtonText: 'Si',
+        confirmButtonText: 'Sí',
         cancelButtonColor: '#d33',
         showCancelButton: true,
         cancelButtonText: 'No',
         background: '#7c1ca4',
         color: '#fff'
-      }).then((result) => {
+    }).then((result) => {
         if (!result.isConfirmed) {
-          this.saveResults();
+            this.saveResults();
         }
-      });
-    }
+    });
 
     this.currentCardValue = this.nextCardValue;
     this.nextCardValue = this.getRandomCardValue();
     this.currentWord = this.getRandomWord();
 
     this.updateCardImage(this.currentCardValue, this.currentWord);
-  }
+
+    setTimeout(() => {
+      this.cardImageAfter = `../../../assets/Naipes/${this.currentCardValue}-${this.currentWord}.png`;
+        setTimeout(() => {
+            this.cardImageAfter = '../../../assets/Naipes/card-back.png';
+        }, 2500);
+    }, 10);
+}
+
   saveResults(){
     let date = new Date();
     let dateString = date.toString();
