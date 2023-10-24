@@ -20,7 +20,7 @@
 <h2>Link</h2>
 <p align="center">
   <a  href="https://juansueldo-tp1-laboiv.netlify.app/" target="_blank">
-    <img src="https://img.shields.io/badge/Website-0077B5?style=for-the-badge&logo=website&logoColor=white" alt="juansueldo"/>
+    <img src="https://img.shields.io/badge/Website-7c1ca4?style=for-the-badge&logo=medium&logoColor=white" alt="juansueldo"/>
   </a>
 </p>
 
