@@ -11,7 +11,7 @@ export class PokeapiService {
   constructor(private http: HttpClient) { }
 
   getRandomPokemon(): Observable<any> {
-    const randomId = Math.floor(Math.random() * 151) + 1;
+    const randomId = Math.floor(Math.random() * 802) + 1;
     return this.http.get(`${this.apiUrl}/${randomId}`);
   }
 

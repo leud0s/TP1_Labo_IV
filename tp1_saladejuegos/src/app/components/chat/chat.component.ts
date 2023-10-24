@@ -34,7 +34,9 @@ export class ChatComponent implements OnInit {
     this.messages$.subscribe(
       (messages: Message[]) => {
         this.messages = messages;
-        this.scrollToBottom(); 
+        setTimeout(() => {
+          this.scrollToBottom();
+        }, 10);
       },
       (error) => {
         console.error('Error obteniendo documentos: ', error);

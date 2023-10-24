@@ -73,7 +73,7 @@ export class TriviaComponent implements OnInit{
     this.options.sort(() => Math.random() - 0.5);
   }
   getRandomPokemonName() {
-    const randomId = Math.floor(Math.random() * 151) + 1;
+    const randomId = Math.floor(Math.random() * 802) + 1;
     return this.pokeapiService.getPokemonNameById(randomId);
   }
 
