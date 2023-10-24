@@ -2,7 +2,7 @@
 <h3 align="center">Sala de Juegos</h3>
 <p align="center"><img  src="https://github.com/juansueldo/TP1_Labo_IV/blob/main/tp1_saladejuegos/src/assets/consola.png" width="80"></p>
 
-<h2>Tecnologias utilizadas</h2>
+<h2>Tecnologías utilizadas</h2>
 
 ![Javascript](https://img.shields.io/badge/Javascript-F0DB4F?style=for-the-badge&labelColor=black&logo=javascript&logoColor=F0DB4F)
 ![Typescript](https://img.shields.io/badge/Typescript-007acc?style=for-the-badge&labelColor=black&logo=typescript&logoColor=007acc)
