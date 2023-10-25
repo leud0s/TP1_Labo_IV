@@ -22,7 +22,7 @@ import { FIREBASE_OPTIONS } from '@angular/fire/compat';
 import { SpinnerComponent } from './components/spinner/spinner.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
     declarations: [
@@ -54,6 +54,7 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
         provideFirebaseApp(() => initializeApp(environment.firebase)),
         provideAuth(() => getAuth()),
         provideFirestore(() => getFirestore()),
+        HttpClientModule
         
     ],
     exports:[

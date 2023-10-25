@@ -1,17 +1,21 @@
 
-<div class="container-fluid center">
-  <div class="container-title">
-    <h2 class="title">Mayor o menor</h2>
-    <h4>Puntaje: {{points}}</h4>
-  </div>
+<div *ngIf="currentCard">
+  <h2>Mayor o Menor</h2>
+ <!-- <h4>Puntaje: {{points}}</h4>-->
   <div class="container-cards">
-    <img [src]="cardImageAfter" class="card-image" alt="">
-    <img id="card-image" class="card-image" [src]="cardImage" alt="Card Image">
-
+    <div class="card">
+      <img [src]="currentCard.image" alt="{{ currentCard.value }} de {{ currentCard.suit }}" class="card-image"/>
+      <p>Carta actual: {{ currentCard.value }} de {{ currentCard.suit }}</p>
+    </div>
+    <div *ngIf="nextCard" class="card">
+      <img [src]="nextCard.image" alt="{{ nextCard.value }} de {{ nextCard.suit }}" class="card-image"/>
+      <p>Siguiente carta: {{ nextCard.value }} de {{ nextCard.suit }}</p>
+    </div>
   </div>
+  <div style="color: white">{{result}}</div>
   <div class="container-buttons">
-    <button class="btn btn-danger m-2" id="higher-button" (click)="compareCards('higher')">Mayor</button>
-    <button class="btn btn-primary m-2" id="lower-button" (click)="compareCards('lower')">Menor</button>
+    <button class="btn btn-danger m-2" (click)="checkGuess(true)">Mayor</button>
+    <button class="btn btn-primary m-2" (click)="checkGuess(false)">Menor</button>
   </div>
 </div>
 <div>
